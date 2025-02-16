@@ -31,7 +31,7 @@ $$
 h = \frac{b - a}{N}
 $$
 
-where **h** is the width of each subinterval. We approximate $f(x)$ as a straight line between consecutive points.
+where **h** is the width of each subinterval. We approximate $f(x)$ as a straight line between consecutive points. (h is width here because this method rotates the trapezium.
 ...N seems important here...
 
 ## Linear Approximation Between Points
@@ -69,6 +69,12 @@ Instead of integrating explicitly, we use the **trapezoidal formula** directly t
 
 $$
 A_k = \frac{1}{2} h \big[ f(a + h(k-1)) + f(a + hk) \big]
+$$
+
+This is because the area of a trapezium is:
+
+$$
+Area = \frac{1}{2} height \big[width of two paralell lines added togther]
 $$
 
 Summing over all subintervals from $k = 1$ to $N$:
