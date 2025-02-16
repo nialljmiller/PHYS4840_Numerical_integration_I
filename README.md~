@@ -14,24 +14,25 @@ Numerical integration is a fundamental technique for approximating definite inte
 
 ## Step 1: Understanding the Function Approximation
 
-Numerical integration approximates the integral of a function by replacing the function with a simpler shape. The key idea is to approximate **f(x)** by a piecewise-defined function, which is either:
+Numerical integration approximates the integral of a function by replacing the function with a simpler shape. The key idea is to approximate $**f(x)**$ by a piecewise-defined function, which is either:
 
 - A **linear function** (for the Trapezoidal Rule)
 - A **quadratic function** (for Simpson’s Rule)
 
-We then integrate these simple functions instead of the original **f(x)**. 
+We then integrate these simple functions instead of the original $**f(x)**$. 
 
 ---
 
 ## Step 2: Trapezoidal Rule - Approximating with a Line
 
-The **Trapezoidal Rule** assumes that between each pair of points, the function **$f(x)$** behaves like a straight line. The equation of a straight line is given by:
+The **Trapezoidal Rule** assumes that between each pair of points, the function $**f(x)**$ behaves like a straight line. The equation of a straight line is given by:
 $$
 \[
 y = mx + c
 \]
 $$
-For two points \((x_i, f(x_i))\) and \((x_{i+1}, f(x_{i+1}))\), the slope \( m \) is:
+
+For two points $\((x_i, f(x_i))\)$ and $\((x_{i+1}, f(x_{i+1}))\)$, the slope $\( m \)$ is:
 
 $$
 \[
@@ -41,21 +42,27 @@ $$
 
 Thus, the equation of the line is:
 
+$$
 \[
 L(x) = f(x_i) + \frac{f(x_{i+1}) - f(x_i)}{x_{i+1} - x_i} (x - x_i)
 \]
+$$
 
-To approximate the integral, we integrate this linear function between \(x_i\) and \(x_{i+1}\):
+To approximate the integral, we integrate this linear function between $\(x_i\)$ and $\(x_{i+1}\)$:
 
+$$
 \[
 \int_{x_i}^{x_{i+1}} L(x) dx = \frac{h}{2} ( f(x_i) + f(x_{i+1}) )
 \]
+$$
 
-where \(h = x_{i+1} - x_i\). Summing over all intervals from \(a\) to \(b\):
+where $\(h = x_{i+1} - x_i\)$. Summing over all intervals from $\(a\)$ to $\(b\)$:
 
+$$
 \[
 \int_a^b f(x) dx \approx \sum_{i=0}^{n-1} \frac{h}{2} ( f(x_i) + f(x_{i+1}) )
 \]
+$$
 
 Rewriting in a simpler form:
 
