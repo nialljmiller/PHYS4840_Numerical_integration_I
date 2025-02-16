@@ -28,17 +28,13 @@ We then integrate these simple functions instead of the original $**f(x)**$.
 The **Trapezoidal Rule** assumes that between each pair of points, the function $**f(x)**$ behaves like a straight line. The equation of a straight line is given by:
 
 $$
-\[
 y = mx + c
-\]
 $$
 
 For two points $x_i, f(x_i)$ and $\((x_{i+1}, f(x_{i+1}))\)$, the slope $\( m \)$ is:
 
 $$
-\
 m = \frac{f(x_{i+1}) - f(x_i)}{x_{i+1} - x_i}
-\
 $$
 
 Thus, the equation of the line is:
