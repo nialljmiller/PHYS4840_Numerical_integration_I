@@ -23,56 +23,62 @@ We then integrate these simple functions instead of the original $**f(x)**$.
 
 ---
 
-## Step 2: Trapezoidal Rule - Approximating with a Line
+# Trapezoidal Rule - Approximating with a Line
 
-The **Trapezoidal Rule** assumes that between each pair of points, the function $**f(x)**$ behaves like a straight line. The equation of a straight line is given by:
-
-$$
-y = mx + c
-$$
-
-For two points $x_i, f(x_i)$ and $\((x_{i+1}, f(x_{i+1}))\)$, the slope $\( m \)$ is:
+The **Trapezoidal Rule** approximates the area under a curve by dividing it into **N** trapezoidal slices of equal width. Given a function $g(x)$ over the interval $[a, b]$, we define:
 
 $$
-m = \frac{f(x_{i+1}) - f(x_i)}{x_{i+1} - x_i}
+h = \frac{b - a}{N}
 $$
 
-...and...
+where **h** is the width of each subinterval. We approximate $g(x)$ as a straight line between consecutive points.
+
+## Linear Approximation Between Points
+
+The equation of a straight line between two points $(x_k, g(x_k))$ and $(x_{k+1}, g(x_{k+1}))$ is given by:
 
 $$
-c = f(x_i)
+ y = m x + c
 $$
 
-because $f(x_i)$ is the intercept in our case (the point where y is drived from the $0^{th}$ x - $x_i$, not necciserily 0 but who cares...
-
-Thus, the equation of the line is:
+where the slope **m** is:
 
 $$
-y = mx + c
-$$
-$$
-L(x) = \frac{f(x_{i+1}) - f(x_i)}{x_{i+1} - x_i} (x - x_i) + f(x_i)
+m = \frac{g(x_{k+1}) - g(x_k)}{x_{k+1} - x_k}
 $$
 
-To approximate the integral, we integrate this linear function between $x_i$ and $x_{i+1}$:
+Since we define the function at $x_k$ to be the starting point of the interval, the equation simplifies to:
 
 $$
-\int_{x_i}^{x_{i+1}} L(x) dx = \frac{h}{2} ( f(x_i) + f(x_{i+1}) )
+G(x) = \frac{g(x_{k+1}) - g(x_k)}{h} (x - x_k) + g(x_k)
 $$
 
-where $h = x_{i+1} - x_i$. Summing over all intervals from $a$ to $b$:
+where **h** is the spacing between points.
+
+## Area Approximation
+
+Instead of integrating explicitly, we use the **trapezoidal formula** directly to approximate the area under $g(x)$ for each interval. The area of each individual trapezoid, denoted as $A_k$, is given by:
 
 $$
-\int_a^b f(x) dx \approx \sum_{i=0}^{n-1} \frac{h}{2} ( f(x_i) + f(x_{i+1}) )
+A_k = \frac{1}{2} h \big[ g(a + h_{k-1}) + g(a + h_k) \big]
 $$
 
-Rewriting in a simpler form:
+Summing over all subintervals from $k = 1$ to $N$:
 
 $$
-\int_a^b f(x) dx \approx \frac{h}{2} ( f(x_0) + 2 \sum f(x_i) + f(x_n) )
+A \approx \sum_{k=1}^{N} \frac{1}{2} h \big[ g(a + h_{k-1}) + g(a + h_k) \big]
 $$
 
-This shows that the Trapezoidal Rule replaces **f(x)** with a piecewise **linear function**.
+Rewriting in a more compact form:
+
+$$
+A \approx \frac{h}{2} \Bigg[ g(a) + 2 \sum_{k=1}^{N-1} g(a + h_k) + g(b) \Bigg]
+$$
+
+This provides a simple way to estimate the area under $g(x)$ by summing up the areas of the trapezoids formed between consecutive points.
+
+
+
 
 ---
 
