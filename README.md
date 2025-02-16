@@ -10,86 +10,93 @@ Numerical integration is a fundamental technique for approximating definite inte
 - **Romberg Integration**
 
 ---
+# Numerical Integration: Trapezoidal and Simpson's Rule
 
-# Numerical Integration: Trapezoidal Rule
+## Step 1: Understanding the Function Approximation
 
-## Step 1: Area of a Single Trapezoid
+Numerical integration approximates the integral of a function by replacing the function with a simpler shape. The key idea is to approximate **f(x)** by a piecewise-defined function, which is either:
 
-A single trapezoid between two points \( x_i \) and \( x_{i+1} \) on the function \( f(x) \) has an area given by:
+- A **linear function** (for the Trapezoidal Rule)
+- A **quadratic function** (for Simpson’s Rule)
 
-\[
-A = \frac{1}{2} \times \text{Base} \times (\text{Height}_1 + \text{Height}_2)
-\]
-
-where:
-
-- The **base** is the distance between \( x_i \) and \( x_{i+1} \), which is:
-
-  \[
-  h = x_{i+1} - x_i
-  \]
-
-- The **heights** are the function values at these points: \( f(x_i) \) and \( f(x_{i+1}) \).
-
-Thus, the area of a single trapezoid is:
-
-\[
-A_i = \frac{h}{2} \left( f(x_i) + f(x_{i+1}) \right)
-\]
+We then integrate these simple functions instead of the original **f(x)**. 
 
 ---
 
-## Step 2: Summing Over Multiple Trapezoids
+## Step 2: Trapezoidal Rule - Approximating with a Line
 
-To approximate the integral over \( [a,b] \), we sum up the areas of all \( n \) trapezoids:
-
-\[
-\int_a^b f(x) dx \approx \sum_{i=0}^{n-1} A_i
-\]
-
-Substituting the formula for \( A_i \):
+The **Trapezoidal Rule** assumes that between each pair of points, the function **f(x)** behaves like a straight line. The equation of a straight line is given by:
 
 \[
-\int_a^b f(x) dx \approx \sum_{i=0}^{n-1} \frac{h}{2} \left( f(x_i) + f(x_{i+1}) \right)
+y = mx + c
 \]
 
-which is exactly the formula used in numerical integration.
+For two points \((x_i, f(x_i))\) and \((x_{i+1}, f(x_{i+1}))\), the slope \( m \) is:
+
+\[
+m = \frac{f(x_{i+1}) - f(x_i)}{x_{i+1} - x_i}
+\]
+
+Thus, the equation of the line is:
+
+\[
+L(x) = f(x_i) + \frac{f(x_{i+1}) - f(x_i)}{x_{i+1} - x_i} (x - x_i)
+\]
+
+To approximate the integral, we integrate this linear function between \(x_i\) and \(x_{i+1}\):
+
+\[
+\int_{x_i}^{x_{i+1}} L(x) dx = \frac{h}{2} ( f(x_i) + f(x_{i+1}) )
+\]
+
+where \(h = x_{i+1} - x_i\). Summing over all intervals from \(a\) to \(b\):
+
+\[
+\int_a^b f(x) dx \approx \sum_{i=0}^{n-1} \frac{h}{2} ( f(x_i) + f(x_{i+1}) )
+\]
+
+Rewriting in a simpler form:
+
+\[
+\int_a^b f(x) dx \approx \frac{h}{2} ( f(x_0) + 2 \sum f(x_i) + f(x_n) )
+\]
+
+This shows that the Trapezoidal Rule replaces **f(x)** with a piecewise **linear function**.
 
 ---
 
-## Step 3: Compact Summation Notation
+## Step 3: Simpson’s Rule - Approximating with a Quadratic
 
-Rearranging the sum, we recognize that all interior function values appear twice (once as \( f(x_{i+1}) \) and once as \( f(x_i) \) in the next term), except for the first and last points:
+Simpson’s Rule assumes that between three consecutive points, **f(x)** behaves like a quadratic function. The general quadratic equation is:
 
 \[
-\int_a^b f(x) dx \approx \frac{h}{2} \left( f(x_0) + 2 \sum_{i=1}^{n-1} f(x_i) + f(x_n) \right)
+y = ax^2 + bx + c
 \]
 
-This is the form commonly used in textbooks and numerical integration libraries.
+Given three points \((x_i, f(x_i))\), \((x_{i+1}, f(x_{i+1}))\), and \((x_{i+2}, f(x_{i+2}))\), we fit a parabola through these points.
+
+We then integrate this quadratic approximation over small intervals and sum them up to approximate the total integral. The result is:
+
+\[
+\int_a^b f(x) dx \approx \frac{h}{3} \sum ( f(x_i) + 4 f(x_{i+1}) + f(x_{i+2}) )
+\]
+
+where \(h\) is the step size. This highlights that Simpson’s Rule replaces **f(x)** with a piecewise **quadratic function**.
 
 ---
 
-## Summary of Forms
+## Summary of Differences
 
-1. **Basic Trapezoid Formula:**
-   \[
-   A = \frac{1}{2} h (f(a) + f(b))
-   \]
-
-2. **Sum Over Multiple Trapezoids:**
-   \[
-   \sum_{i=0}^{n-1} \frac{h}{2} \left( f(x_i) + f(x_{i+1}) \right)
-   \]
-
-3. **Compact Form with Summation:**
-   \[
-   \frac{h}{2} \left( f(x_0) + 2 \sum_{i=1}^{n-1} f(x_i) + f(x_n) \right)
-   \]
+| Method | Approximation | Formula |
+|--------|--------------|---------|
+| **Trapezoidal Rule** | Uses a linear approximation | \( \frac{h}{2} ( f(x_0) + 2 \sum f(x_i) + f(x_n) ) \) |
+| **Simpson’s Rule** | Uses a quadratic approximation | \( \frac{h}{3} \sum ( f(x_i) + 4 f(x_{i+1}) + f(x_{i+2}) ) \) |
 
 ---
 
-## Python Implementation
+## Step 4: Python Implementations
 
+### **Trapezoidal Rule Implementation**
 ```python
 import numpy as np
 
@@ -106,19 +113,9 @@ integral_approx = trapezoidal_rule(f, a, b, n)
 print("Approximated Integral:", integral_approx)
 ```
 
----
-
-### **2. Simpson’s Rule**  
-Simpson’s Rule improves upon the Trapezoidal Rule by using quadratic interpolation instead of linear.
-
-#### **Formula:**  
-\[
-\int_a^b f(x) dx \approx \frac{h}{3} \sum_{i=0, \text{even}}^{n-2} \left[f(x_i) + 4f(x_{i+1}) + f(x_{i+2})\right]
-\]
-where \( h = \frac{b-a}{n} \) and \( n \) must be even.
-
-#### **Python Implementation:**
+### **Simpson’s Rule Implementation**
 ```python
+
 def simpsons_rule(f, a, b, n):
     if n % 2 == 1:
         raise ValueError("n must be even for Simpson's Rule")
@@ -127,6 +124,9 @@ def simpsons_rule(f, a, b, n):
     h = (b - a) / n
     return (h/3) * (y[0] + 4*np.sum(y[1:n:2]) + 2*np.sum(y[2:n-1:2]) + y[-1])
 ```
+
+This explanation makes it clear that the difference between the methods is **how we approximate the function**: a line for Trapezoidal and a parabola for Simpson’s.
+
 
 ---
 
