@@ -104,29 +104,6 @@ f = lambda x: np.exp(-x**2)
 a, b, n = 0, 1, 100
 integral_approx = trapezoidal_rule(f, a, b, n)
 print("Approximated Integral:", integral_approx)
-
-
-
-
-
-### **1. The Trapezoidal Rule**  
-The Trapezoidal Rule approximates the integral of a function \( f(x) \) over an interval \([a, b]\) by dividing it into \(n\) subintervals and treating each segment as a trapezoid.
-
-#### **Formula:**  
-\[
-\int_a^b f(x) dx \approx \sum_{i=0}^{n-1} \frac{h}{2} \left[ f(x_i) + f(x_{i+1}) \right]
-\]
-where \( h = \frac{b - a}{n} \) is the step size.
-
-#### **Python Implementation:**
-```python
-import numpy as np
-
-def trapezoidal_rule(f, a, b, n):
-    x = np.linspace(a, b, n+1)
-    y = f(x)
-    h = (b - a) / n
-    return (h / 2) * (y[0] + 2 * np.sum(y[1:-1]) + y[-1])
 ```
 
 ---
