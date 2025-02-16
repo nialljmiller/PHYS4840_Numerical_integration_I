@@ -25,17 +25,17 @@ We then integrate these simple functions instead of the original $**f(x)**$.
 
 # Trapezoidal Rule - Approximating with a Line
 
-The **Trapezoidal Rule** approximates the area under a curve by dividing it into **N** trapezoidal slices of equal width. Given a function $g(x)$ over the interval $[a, b]$, we define:
+The **Trapezoidal Rule** approximates the area under a curve by dividing it into **N** trapezoidal slices of equal width. Given a function $f(x)$ over the interval $[a, b]$, we define:
 
 $$
 h = \frac{b - a}{N}
 $$
 
-where **h** is the width of each subinterval. We approximate $g(x)$ as a straight line between consecutive points.
+where **h** is the width of each subinterval. We approximate $f(x)$ as a straight line between consecutive points.
 
 ## Linear Approximation Between Points
 
-The equation of a straight line between two points $(x_k, g(x_k))$ and $(x_{k+1}, g(x_{k+1}))$ is given by:
+The equation of a straight line between two points $(x_k, f(x_k))$ and $(x_{k+1}, f(x_{k+1}))$ is given by:
 
 $$
  y = m x + c
@@ -44,41 +44,43 @@ $$
 where the slope **m** is:
 
 $$
-m = \frac{g(x_{k+1}) - g(x_k)}{x_{k+1} - x_k}
+m = \frac{f(x_{k+1}) - f(x_k)}{x_{k+1} - x_k}
 $$
+
+and the intercept would be:
+
+$$
+c = f(x_k)
+$$
+
+as this is the y value at the initial x - $x_k$
 
 Since we define the function at $x_k$ to be the starting point of the interval, the equation simplifies to:
 
 $$
-G(x) = \frac{g(x_{k+1}) - g(x_k)}{h} (x - x_k) + g(x_k)
+G(x) = \frac{f(x_{k+1}) - f(x_k)}{h} (x - x_k) + f(x_k)
 $$
 
-where **h** is the spacing between points.
 
 ## Area Approximation
 
-Instead of integrating explicitly, we use the **trapezoidal formula** directly to approximate the area under $g(x)$ for each interval. The area of each individual trapezoid, denoted as $A_k$, is given by:
+Instead of integrating explicitly, we use the **trapezoidal formula** directly to approximate the area under $f(x)$ for each interval. The area of each individual trapezoid, denoted as $A_k$, is given by:
 
 $$
-A_k = \frac{1}{2} h \big[ g(a + h_{k-1}) + g(a + h_k) \big]
+A_k = \frac{1}{2} h \big[ f(a + h_{k-1}) + f(a + h_k) \big]
 $$
 
 Summing over all subintervals from $k = 1$ to $N$:
 
 $$
-A \approx \sum_{k=1}^{N} \frac{1}{2} h \big[ g(a + h_{k-1}) + g(a + h_k) \big]
+A \approx \sum_{k=1}^{N} \frac{1}{2} h \big[ f(a + h_{k-1}) + f(a + h_k) \big]
 $$
 
 Rewriting in a more compact form:
 
 $$
-A \approx \frac{h}{2} \Bigg[ g(a) + 2 \sum_{k=1}^{N-1} g(a + h_k) + g(b) \Bigg]
+A \approx \frac{h}{2} \Bigg[ f(a) + 2 \sum_{k=1}^{N-1} f(a + h_k) + f(b) \Bigg]
 $$
-
-This provides a simple way to estimate the area under $g(x)$ by summing up the areas of the trapezoids formed between consecutive points.
-
-
-
 
 ---
 
