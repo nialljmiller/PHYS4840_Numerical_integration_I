@@ -82,6 +82,12 @@ $$
 A \approx \frac{h}{2} \Bigg[ f(a) + f(b) + 2 \sum_{k=1}^{N-1} f(a + h_k) \Bigg]
 $$
 
+...or as Mark prefers it:
+
+$$
+A \approx h \Bigg[ \frac{f(a)}{2} + \frac{f(b)}{2} + \sum_{k=1}^{N-1} f(a + h_k) \Bigg]
+$$
+
 ---
 
 ## Step 3: Simpson’s Rule - Approximating with a Quadratic
