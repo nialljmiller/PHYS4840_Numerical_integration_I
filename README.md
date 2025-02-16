@@ -31,6 +31,7 @@ $$
 h = \frac{b - a}{N}
 $$
 
+...N seems important here...
 
 where **h** is the width of each subinterval. We approximate $f(x)$ as a straight line between consecutive points.
 
