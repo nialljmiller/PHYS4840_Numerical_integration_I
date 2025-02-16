@@ -74,7 +74,7 @@ $$
 This is because the area of a trapezium is:
 
 $$
-Area = \frac{1}{2} height \big[length of two paralell lines added togther]
+Area = \frac{1}{2} \text{ height } \big[\text{length of two parallel lines added together}\big]
 $$
 
 Summing over all subintervals from $k = 1$ to $N$:
