@@ -33,43 +33,43 @@ y = mx + c
 \]
 $$
 
-For two points $\((x_i, f(x_i))\)$ and $\((x_{i+1}, f(x_{i+1}))\)$, the slope $\( m \)$ is:
+For two points $x_i, f(x_i)$ and $\((x_{i+1}, f(x_{i+1}))\)$, the slope $\( m \)$ is:
 
 $$
-\[
+\
 m = \frac{f(x_{i+1}) - f(x_i)}{x_{i+1} - x_i}
-\]
+\
 $$
 
 Thus, the equation of the line is:
 
 $$
-\[
+\
 L(x) = f(x_i) + \frac{f(x_{i+1}) - f(x_i)}{x_{i+1} - x_i} (x - x_i)
-\]
+\
 $$
 
 To approximate the integral, we integrate this linear function between $\(x_i\)$ and $\(x_{i+1}\)$:
 
 $$
-\[
+\
 \int_{x_i}^{x_{i+1}} L(x) dx = \frac{h}{2} ( f(x_i) + f(x_{i+1}) )
-\]
+\
 $$
 
 where $\(h = x_{i+1} - x_i\)$. Summing over all intervals from $\(a\)$ to $\(b\)$:
 
 $$
-\[
+\
 \int_a^b f(x) dx \approx \sum_{i=0}^{n-1} \frac{h}{2} ( f(x_i) + f(x_{i+1}) )
-\]
+\
 $$
 
 Rewriting in a simpler form:
 
-\[
+\
 \int_a^b f(x) dx \approx \frac{h}{2} ( f(x_0) + 2 \sum f(x_i) + f(x_n) )
-\]
+\
 
 This shows that the Trapezoidal Rule replaces **f(x)** with a piecewise **linear function**.
 
