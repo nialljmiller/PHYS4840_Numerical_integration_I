@@ -40,32 +40,26 @@ $$
 Thus, the equation of the line is:
 
 $$
-\
 L(x) = f(x_i) + \frac{f(x_{i+1}) - f(x_i)}{x_{i+1} - x_i} (x - x_i)
-\
 $$
 
-To approximate the integral, we integrate this linear function between $\(x_i\)$ and $\(x_{i+1}\)$:
+To approximate the integral, we integrate this linear function between $x_i$ and $x_{i+1}$:
 
 $$
-\
 \int_{x_i}^{x_{i+1}} L(x) dx = \frac{h}{2} ( f(x_i) + f(x_{i+1}) )
-\
 $$
 
-where $\(h = x_{i+1} - x_i\)$. Summing over all intervals from $\(a\)$ to $\(b\)$:
+where $h = x_{i+1} - x_i$. Summing over all intervals from $a$ to $b$:
 
 $$
-\
 \int_a^b f(x) dx \approx \sum_{i=0}^{n-1} \frac{h}{2} ( f(x_i) + f(x_{i+1}) )
-\
 $$
 
 Rewriting in a simpler form:
 
-\
+$$
 \int_a^b f(x) dx \approx \frac{h}{2} ( f(x_0) + 2 \sum f(x_i) + f(x_n) )
-\
+$$
 
 This shows that the Trapezoidal Rule replaces **f(x)** with a piecewise **linear function**.
 
@@ -75,17 +69,17 @@ This shows that the Trapezoidal Rule replaces **f(x)** with a piecewise **linear
 
 Simpson’s Rule assumes that between three consecutive points, **f(x)** behaves like a quadratic function. The general quadratic equation is:
 
-\[
+$$
 y = ax^2 + bx + c
-\]
+$$
 
 Given three points \((x_i, f(x_i))\), \((x_{i+1}, f(x_{i+1}))\), and \((x_{i+2}, f(x_{i+2}))\), we fit a parabola through these points.
 
 We then integrate this quadratic approximation over small intervals and sum them up to approximate the total integral. The result is:
 
-\[
+$$
 \int_a^b f(x) dx \approx \frac{h}{3} \sum ( f(x_i) + 4 f(x_{i+1}) + f(x_{i+2}) )
-\]
+$$
 
 where \(h\) is the step size. This highlights that Simpson’s Rule replaces **f(x)** with a piecewise **quadratic function**.
 
