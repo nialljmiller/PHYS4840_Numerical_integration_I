@@ -26,6 +26,7 @@ We then integrate these simple functions instead of the original $**f(x)**$.
 ## Step 2: Trapezoidal Rule - Approximating with a Line
 
 The **Trapezoidal Rule** assumes that between each pair of points, the function $**f(x)**$ behaves like a straight line. The equation of a straight line is given by:
+
 $$
 \[
 y = mx + c
