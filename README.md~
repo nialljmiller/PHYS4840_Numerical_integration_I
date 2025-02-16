@@ -43,11 +43,12 @@ $$
 c = f(x_i)
 $$
 
-because $f(x_i)$ is the intercept in our case (the point where y is drived from the $0^th$ x - %x_i$, not necciserily 0 but who cares...
+because $f(x_i)$ is the intercept in our case (the point where y is drived from the $0^{th}$ x - $x_i$, not necciserily 0 but who cares...
 
 Thus, the equation of the line is:
 
 $$
+y = mx + c
 L(x) = \frac{f(x_{i+1}) - f(x_i)}{x_{i+1} - x_i} (x - x_i) + f(x_i)
 $$
 
