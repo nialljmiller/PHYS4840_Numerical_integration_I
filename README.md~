@@ -31,9 +31,8 @@ $$
 h = \frac{b - a}{N}
 $$
 
-...N seems important here...
-
 where **h** is the width of each subinterval. We approximate $f(x)$ as a straight line between consecutive points.
+...N seems important here...
 
 ## Linear Approximation Between Points
 
@@ -75,7 +74,7 @@ $$
 Summing over all subintervals from $k = 1$ to $N$:
 
 $$
-A \approx \sum_{k=1}^{N} \frac{1}{2} h \big[ f(a + h(k-1)) + f(a + hk) \big]
+A \approx  \frac{1}{2} h  \sum_{k=1}^{N}\big[ f(a + h(k-1)) + f(a + hk) \big]
 $$
 
 Rewriting in a more compact form:
