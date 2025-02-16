@@ -38,7 +38,7 @@ where **h** is the width of each subinterval. We approximate $f(x)$ as a straigh
 The equation of a straight line between two points $(x_k, f(x_k))$ and $(x_{k+1}, f(x_{k+1}))$ is given by:
 
 $$
- y = m x + c
+ f(x) = m x + c
 $$
 
 where the slope **m** is:
@@ -79,7 +79,7 @@ $$
 Rewriting in a more compact form:
 
 $$
-A \approx \frac{h}{2} \Bigg[ f(a) + 2 \sum_{k=1}^{N-1} f(a + h_k) + f(b) \Bigg]
+A \approx \frac{h}{2} \Bigg[ f(a) + f(b) + 2 \sum_{k=1}^{N-1} f(a + h_k) \Bigg]
 $$
 
 ---
