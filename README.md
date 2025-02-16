@@ -48,7 +48,7 @@ because $f(x_i)$ is the intercept in our case (the point where y is drived from 
 Thus, the equation of the line is:
 
 $$
-y = mx + c
+y = mx + c\\
 L(x) = \frac{f(x_{i+1}) - f(x_i)}{x_{i+1} - x_i} (x - x_i) + f(x_i)
 $$
 
