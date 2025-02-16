@@ -85,7 +85,7 @@ $$
 ...or as Mark prefers it:
 
 $$
-A \approx h \Bigg[ \frac{f(a)}{2} + \frac{f(b)}{2} + \sum_{k=1}^{N-1} f(a + h_k) \Bigg]
+A \approx h \Bigg[ \frac{1}{2}f(a) + \frac{1}{2}f(b) + \sum_{k=1}^{N-1} f(a + h_k) \Bigg]
 $$
 
 ---
