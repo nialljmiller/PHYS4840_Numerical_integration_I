@@ -31,6 +31,7 @@ $$
 h = \frac{b - a}{N}
 $$
 
+
 where **h** is the width of each subinterval. We approximate $f(x)$ as a straight line between consecutive points.
 
 ## Linear Approximation Between Points
@@ -67,25 +68,25 @@ $$
 Instead of integrating explicitly, we use the **trapezoidal formula** directly to approximate the area under $f(x)$ for each interval. The area of each individual trapezoid, denoted as $A_k$, is given by:
 
 $$
-A_k = \frac{1}{2} h \big[ f(a + h_{k-1}) + f(a + h_k) \big]
+A_k = \frac{1}{2} h \big[ f(a + h(k-1)) + f(a + hk) \big]
 $$
 
 Summing over all subintervals from $k = 1$ to $N$:
 
 $$
-A \approx \sum_{k=1}^{N} \frac{1}{2} h \big[ f(a + h_{k-1}) + f(a + h_k) \big]
+A \approx \sum_{k=1}^{N} \frac{1}{2} h \big[ f(a + h(k-1)) + f(a + hk) \big]
 $$
 
 Rewriting in a more compact form:
 
 $$
-A \approx \frac{h}{2} \Bigg[ f(a) + f(b) + 2 \sum_{k=1}^{N-1} f(a + h_k) \Bigg]
+A \approx \frac{h}{2} \Bigg[ f(a) + f(b) + 2 \sum_{k=1}^{N-1} f(a + hk) \Bigg]
 $$
 
 ...or as Mark prefers it:
 
 $$
-A \approx h \Bigg[ \frac{1}{2}f(a) + \frac{1}{2}f(b) + \sum_{k=1}^{N-1} f(a + h_k) \Bigg]
+A \approx h \Bigg[ \frac{1}{2}f(a) + \frac{1}{2}f(b) + \sum_{k=1}^{N-1} f(a + hk) \Bigg]
 $$
 
 ---
