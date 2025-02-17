@@ -147,53 +147,6 @@ $$
 $$
 
 
-
----
-
-## Summary of Differences
-
-| Method | Approximation | Formula |
-|--------|--------------|---------|
-| **Trapezoidal Rule** | Uses a linear approximation | \( A \approx h \Big[ \frac{1}{2} f(a) + \frac{1}{2} f(b) + \sum f(x_i) \Big] \) |
-| **Simpson’s Rule** | Uses a quadratic approximation | \( A \approx \frac{h}{3} \Big[ f(a) + f(b) + 4 \sum f(\text{odd indices}) + 2 \sum f(\text{even indices}) \Big] \) |
-
----
-
-
-
-
-
-
-
-
-
-## Simpson’s Rule - Approximating with a Quadratic
-
-Simpson’s Rule assumes that between three consecutive points, **f(x)** behaves like a quadratic function. The general quadratic equation is:
-
-$$
-y = ax^2 + bx + c
-$$
-
-Given three points \((x_i, f(x_i))\), \((x_{i+1}, f(x_{i+1}))\), and \((x_{i+2}, f(x_{i+2}))\), we fit a parabola through these points.
-
-We then integrate this quadratic approximation over small intervals and sum them up to approximate the total integral. The result is:
-
-$$
-\int_a^b f(x) dx \approx \frac{h}{3} \sum ( f(x_i) + 4 f(x_{i+1}) + f(x_{i+2}) )
-$$
-
-where \(h\) is the step size. This highlights that Simpson’s Rule replaces **f(x)** with a piecewise **quadratic function**.
-
----
-
-## Summary of Differences
-
-| Method | Approximation | Formula |
-|--------|--------------|---------|
-| **Trapezoidal Rule** | Uses a linear approximation | \( \frac{h}{2} ( f(x_0) + 2 \sum f(x_i) + f(x_n) ) \) |
-| **Simpson’s Rule** | Uses a quadratic approximation | \( \frac{h}{3} \sum ( f(x_i) + 4 f(x_{i+1}) + f(x_{i+2}) ) \) |
-
 ---
 
 ## Python Implementations
