@@ -143,7 +143,7 @@ $$
 Applying the quadratic approximation iteratively across these subintervals, the integral is approximated as:
 
 $$
-\int_{a}^{b} f(x) \, dx \approx \frac{h}{3} \left[ f(x_0) + 4 \sum_{\text{odd } i} f(x_i) + 2 \sum_{\text{even } i} f(x_i) + f(x_n) \right]
+\int_{a}^{b} f(x) \, dx \approx \frac{h}{3} \left[ f(a) + f(b) + 4 \sum_{\text{k odd }}_{1..N-1} f(x_i) + 2 \sum_{\text{even } i} f(x_i) + f(x_n) \right]
 $$
 
 where:
