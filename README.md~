@@ -195,7 +195,6 @@ where \(h\) is the step size. This highlights that Simpson’s Rule replaces **f
 
 ### **Trapezoidal Rule Implementation**
 ```python
-import numpy as np
 
 def trapezoidal_rule(f, a, b, n):
     x = np.linspace(a, b, n+1)
@@ -203,11 +202,6 @@ def trapezoidal_rule(f, a, b, n):
     h = (b - a) / n
     return (h / 2) * (y[0] + 2 * np.sum(y[1:-1]) + y[-1])
 
-# Example usage:
-f = lambda x: np.exp(-x**2)
-a, b, n = 0, 1, 100
-integral_approx = trapezoidal_rule(f, a, b, n)
-print("Approximated Integral:", integral_approx)
 ```
 
 ### **Simpson’s Rule Implementation**
