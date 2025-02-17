@@ -53,7 +53,7 @@ def empirical_trapezoidal_rule(y_values, x_values, N):
         float: The approximated integral.
     """
     a, b = x_values[0], x_values[-1]
-    h = (b - a) / N
+    h = x_values[1] - x_values[0]
 
     integral = (1/2) * (y_values[0] + y_values[-1]) * h  # First and last terms
 

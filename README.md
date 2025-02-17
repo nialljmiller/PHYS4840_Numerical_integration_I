@@ -82,7 +82,7 @@ The **Simpson’s Rule** method improves upon the **Trapezoidal Rule** by approx
 We approximate \( f(x) \) using a quadratic polynomial of the form:
 
 $$
-Q(x) = Ax^2 + Bx + C
+f(x) = Ax^2 + Bx + C
 $$
 
 Given three equally spaced points \( x = -h, 0, h \), we have:
@@ -235,7 +235,7 @@ import matplotlib.pyplot as plt
 def f(x):
     return np.exp(-x**2)
 
-exact = 0.746824  # Approximate exact integral for comparison
+exact = #something_we_know_is_true
 ns = np.arange(2, 50, 2)
 errors_trapz = [abs(trapezoidal_rule(f, 0, 1, n) - exact) for n in ns]
 errors_simpson = [abs(simpsons_rule(f, 0, 1, n) - exact) for n in ns]
