@@ -130,11 +130,11 @@ $$
 Solving this system simultaneously for \( A, B, C \), we find:
 
 $$
-A = \frac{1}{2h^2}f(h) - 2f(0) + f(-h)
+A = \frac{1}{2h^2}(f(h) - 2f(0) + f(-h))
 $$
 
 $$
-B = \frac{1}{2h}f(h) - f(-h)
+B = \frac{1}{2h}(f(h) - f(-h))
 $$
 
 $$
