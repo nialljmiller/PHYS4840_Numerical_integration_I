@@ -10,7 +10,7 @@ Numerical integration is a fundamental technique for approximating definite inte
 - **Romberg Integration**
 
 ---
-# Numerical Integration: Trapezoidal and Simpson's Rule
+# Numerical Integration: Trapezoidal, Simpson's Rule and Romberg
 
 ## Understanding the Function Approximation
 
@@ -173,9 +173,127 @@ def simpsons_rule(f, a, b, n):
 
 ---
 
+## **Romberg Integration - Refining the Trapezoidal Rule with Extrapolation**  
 
-### **4. Romberg Integration**  
-Romberg Integration extends the Trapezoidal Rule by using Richardson Extrapolation to improve accuracy.
+The **Romberg Integration** method builds upon the **Trapezoidal Rule** by applying **Richardson Extrapolation**, which systematically removes error terms to produce a more accurate result. Instead of computing a single approximation, Romberg Integration refines the integral estimation step by step using a sequence of trapezoidal approximations.
+
+---
+
+## **Error Reduction by Richardson Extrapolation**  
+
+The error in the **Trapezoidal Rule** scales as:
+
+$$
+E_T = C h^2 + \mathcal{O}(h^4)
+$$
+
+where \( C \) is some constant and \( h \) is the step size. The key idea of **Romberg Integration** is to combine multiple **Trapezoidal Rule** estimates at different step sizes to systematically eliminate the leading error term.
+
+To do this, we define:
+
+$$
+R_{m,0} = T_m
+$$
+
+where \( T_m \) is the **Trapezoidal Rule** approximation using \( 2^m \) intervals:
+
+$$
+T_m = \frac{h_m}{2} \left[ f(a) + f(b) + 2 \sum_{k=1}^{2^m-1} f(a + k h_m) \right]
+$$
+
+where the step size is:
+
+$$
+h_m = \frac{b-a}{2^m}
+$$
+
+We then apply Richardson Extrapolation recursively:
+
+$$
+R_{m, n} = \frac{4^n R_{m, n-1} - R_{m-1, n-1}}{4^n - 1}
+$$
+
+where \( R_{m, n} \) is the improved estimate using the results of lower-order approximations.
+
+This results in a **table of values**, where each row refines the previous row’s estimates.
+
+---
+
+## **Romberg Integration Table**  
+
+The Romberg method fills in a triangular table as follows:
+
+| \( m \) | \( R_{m,0} \) | \( R_{m,1} \) | \( R_{m,2} \) | \( R_{m,3} \) | ... |
+|---|---|---|---|---|---|
+| 0 | \( T_0 \) | - | - | - | - |
+| 1 | \( T_1 \) | \( R_{1,1} \) | - | - | - |
+| 2 | \( T_2 \) | \( R_{2,1} \) | \( R_{2,2} \) | - | - |
+| 3 | \( T_3 \) | \( R_{3,1} \) | \( R_{3,2} \) | \( R_{3,3} \) | - |
+| ... | ... | ... | ... | ... | ... |
+
+Each new column refines the previous estimates, improving the accuracy of the integral.
+
+---
+
+## **Final Approximation**  
+
+The **best estimate** for the integral is found at the **bottom-right** of the table:
+
+$$
+I \approx R_{m, m}
+$$
+
+where \( R_{m, m} \) is the highest-order refinement available.
+
+---
+
+## **Romberg Integration Implementation in Python**  
+
+The implementation follows the recursive structure described above, filling the **Romberg table** iteratively.
+
+```python
+import numpy as np
+
+def romberg_integration(f, a, b, m):
+    R = np.zeros((m+1, m+1))  
+    for i in range(m+1):
+        n = 2**i  
+        R[i, 0] = trapezoidal_rule(f, a, b, n)  
+
+        for j in range(1, i+1):
+            R[i, j] = (4**j * R[i, j-1] - R[i-1, j-1]) / (4**j - 1)
+
+    return R[m, m]
+```
+
+This function:  
+- Computes the **Trapezoidal Rule** estimates for increasing numbers of intervals.
+- Applies **Richardson Extrapolation** iteratively to refine the estimates.
+- Returns the **most accurate** estimate at \( R_{m,m} \).
+
+---
+
+## **Comparison with Trapezoidal and Simpson’s Rule**  
+
+- The **Trapezoidal Rule** is simple but has **\( \mathcal{O}(h^2) \) error**.
+- **Simpson’s Rule** improves upon it with **\( \mathcal{O}(h^4) \) accuracy**, requiring an even number of subintervals.
+- **Romberg Integration** systematically eliminates error terms, achieving **very high accuracy** with relatively few function evaluations.
+
+While **Simpson’s Rule** is effective for smooth functions, **Romberg Integration** is more powerful when high precision is required.
+
+---
+
+This completes the **Romberg Integration** section with the same structure, notation, and style as the rest of your document. Let me know if you want any tweaks! 🚀
+
+
+
+
+
+
+
+
+
+
 
 
 ---
