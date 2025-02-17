@@ -279,11 +279,6 @@ This function:
 - **Simpson’s Rule** improves upon it with **\( $\mathcal{O}(h^4)$ \) accuracy**, requiring an even number of subintervals.
 - **Romberg Integration** systematically eliminates error terms, achieving **very high accuracy** with relatively few function evaluations.
 
-While **Simpson’s Rule** is effective for smooth functions, **Romberg Integration** is more powerful when high precision is required.
-
----
-
-This completes the **Romberg Integration** section with the same structure, notation, and style as the rest of your document. Let me know if you want any tweaks! 🚀
 
 
 
