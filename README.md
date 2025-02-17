@@ -78,7 +78,6 @@ The **Simpson’s Rule** method improves upon the **Trapezoidal Rule** by approx
 ---
 
 ## Quadratic Approximation Between Points
-
 We approximate \( f(x) \) using a quadratic polynomial of the form:
 
 $$
@@ -113,25 +112,35 @@ $$
 C = f(0)
 $$
 
-Since integration of a quadratic function is straightforward, we integrate $f(x)$ over the interval [-h, h]:
+Since integration of a quadratic function is straightforward, we integrate \( f(x) \) over the interval \( [-h, h] \):
 
 $$
-\int_{-h}^{h}(Ax^2 + Bx + C)dx = \frac{2}{3}Ah^3 + 2Ch = \frac{1}{3}h[f(-h) + 4f(0) + f(h)]
+\int_{-h}^{h}(Ax^2 + Bx + C)dx = \frac{2}{3}Ah^3 + 2Ch
 $$
 
-and so if, as before, we are integrating from $x = a$ to $x = b$ in slices of width `$h$' then the first thee slices would be $x = a, a+ h, a + 2h$.
-
-
-
----
-
-## Area Approximation
+Substituting \( A \) and \( C \):
 
 $$
-\int_{a}^{b} f(x) \, dx \approx \frac{b-a}{6} \left[ f(a) + 4f\left(\frac{a+b}{2}\right) + f(b) \right]
+\int_{-h}^{h} f(x) \, dx = \frac{h}{3} \left[ f(-h) + 4f(0) + f(h) \right]
 $$
 
-For a more general case, where we divide the interval \([a,b]\) into an even number \( n \) of subintervals:
+which forms the basis of Simpson's Rule.
+
+\section{Area Approximation Over an Interval}
+
+Extending this idea to an interval \([a, b]\), we divide it into \( n \) subintervals of equal width \( h \), where:
+
+$$
+h = \frac{b-a}{n}
+$$
+
+The points are:
+
+$$
+x_0 = a, \quad x_1 = a + h, \quad x_2 = a + 2h, \quad \dots, \quad x_n = b
+$$
+
+Applying the quadratic approximation iteratively across these subintervals, the integral is approximated as:
 
 $$
 \int_{a}^{b} f(x) \, dx \approx \frac{h}{3} \left[ f(x_0) + 4 \sum_{\text{odd } i} f(x_i) + 2 \sum_{\text{even } i} f(x_i) + f(x_n) \right]
@@ -139,11 +148,11 @@ $$
 
 where:
 
-- \( h = \frac{b-a}{n} \) is the width of each subinterval,
-- \( x_i = a + i h \), for \( i = 0, 1, 2, \dots, n \),
+- \( x_i = a + i h \) for \( i = 0, 1, 2, \dots, n \),
 - The summation over odd \( i \) includes terms where \( i \) is odd,
 - The summation over even \( i \) includes terms where \( i \) is even but excludes \( x_0 \) and \( x_n \).
 
+This follows directly from integrating a piecewise quadratic approximation across multiple subintervals, forming Simpson’s Rule.
 
 
 ---
