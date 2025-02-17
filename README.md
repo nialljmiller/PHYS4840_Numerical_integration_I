@@ -213,7 +213,10 @@ $$
 R_{m, n} = \frac{4^n R_{m, n-1} - R_{m-1, n-1}}{4^n - 1}
 $$
 
-where \( R_{m, n} \) is the improved estimate using the results of lower-order approximations.
+where \( $R_{m, n}$ \) is the improved estimate using the results of lower-order approximations.
+The index nn in \( $R_{m, n}$ \) represents the level of extrapolation applied to refine the integral approximation.
+\( $R_{m, n}$ \) is the n-th level extrapolated value derived from previous approximations to remove higher-order error terms.
+
 
 This results in a **table of values**, where each row refines the previous row’s estimates.
 
