@@ -12,7 +12,7 @@ Numerical integration is a fundamental technique for approximating definite inte
 ---
 # Numerical Integration: Trapezoidal and Simpson's Rule
 
-## Step 1: Understanding the Function Approximation
+## Understanding the Function Approximation
 
 Numerical integration approximates the integral of a function by replacing the function with a simpler shape. The key idea is to approximate $**f(x)**$ by a piecewise-defined function, which is either:
 
@@ -31,7 +31,7 @@ $$
 h = \frac{b - a}{N}
 $$
 
-where **h** is the width of each subinterval. We approximate $f(x)$ as a straight line between consecutive points. (h is width here because this method rotates the trapezium.
+where **h** is the width of each subinterval. We approximate $f(x)$ as a straight line between consecutive points. (h is width here because this method `rotates' the trapezium).
 ...N seems important here...
 
 ## Linear Approximation Between Points
@@ -97,7 +97,100 @@ $$
 
 ---
 
-## Step 3: Simpson’s Rule - Approximating with a Quadratic
+
+
+## Simpson’s Rule - Approximating with a Quadratic
+
+The **Simpson’s Rule** method improves upon the **Trapezoidal Rule** by approximating the function using a **quadratic function** instead of a straight line. Instead of approximating \( f(x) \) between two points, we assume that over a small interval, the function behaves like a **parabola**.
+
+---
+
+## Quadratic Approximation Between Points
+
+We approximate \( f(x) \) using a quadratic polynomial of the form:
+
+$$
+Q(x) = Ax^2 + Bx + C
+$$
+
+Given three equally spaced points \( x = -h, 0, h \), we have:
+
+$$
+f(-h) = A h^2 - B h + C
+$$
+
+$$
+f(0) = C
+$$
+
+$$
+f(h) = A h^2 + B h + C
+$$
+
+Solving this system simultaneously for \( A, B, C \), we find:
+
+$$
+A = \frac{f(h) - 2f(0) + f(-h)}{2h^2}
+$$
+
+$$
+B = \frac{f(h) - f(-h)}{2h}
+$$
+
+$$
+C = f(0)
+$$
+
+Since integration of a quadratic function is straightforward, we integrate \( Q(x) \) over the interval \( [-h, h] \):
+
+$$
+\int_{-h}^{h} Q(x) dx = \frac{h}{3} \big[ f(-h) + 4f(0) + f(h) \big]
+$$
+
+Since we apply this process **piecewise** over the entire interval \( [a, b] \), we sum over all subintervals of size \( h \):
+
+$$
+A \approx \frac{h}{3} \sum_{k=0,2,4}^{N-2} \big[ f(x_k) + 4 f(x_{k+1}) + f(x_{k+2}) \big]
+$$
+
+where \( h = \frac{b - a}{N} \) and \( N \) must be **even** to ensure we always have sets of three points.
+
+---
+
+## Area Approximation
+
+Expanding the summation, the full Simpson’s Rule formula is:
+
+$$
+A \approx \frac{h}{3} \Bigg[ f(a) + f(b) + 4 \sum_{k=1,3,5}^{N-1} f(a + kh) + 2 \sum_{k=2,4,6}^{N-2} f(a + kh) \Bigg]
+$$
+
+where:
+
+- The function values at the **endpoints** \( f(a) \) and \( f(b) \) appear once.
+- The function values at **odd indices** are multiplied by **4**.
+- The function values at **even indices** are multiplied by **2**.
+
+---
+
+## Summary of Differences
+
+| Method | Approximation | Formula |
+|--------|--------------|---------|
+| **Trapezoidal Rule** | Uses a linear approximation | \( A \approx h \Big[ \frac{1}{2} f(a) + \frac{1}{2} f(b) + \sum f(x_i) \Big] \) |
+| **Simpson’s Rule** | Uses a quadratic approximation | \( A \approx \frac{h}{3} \Big[ f(a) + f(b) + 4 \sum f(\text{odd indices}) + 2 \sum f(\text{even indices}) \Big] \) |
+
+---
+
+
+
+
+
+
+
+
+
+## Simpson’s Rule - Approximating with a Quadratic
 
 Simpson’s Rule assumes that between three consecutive points, **f(x)** behaves like a quadratic function. The general quadratic equation is:
 
@@ -126,7 +219,7 @@ where \(h\) is the step size. This highlights that Simpson’s Rule replaces **f
 
 ---
 
-## Step 4: Python Implementations
+## Python Implementations
 
 ### **Trapezoidal Rule Implementation**
 ```python
