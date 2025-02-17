@@ -143,16 +143,9 @@ $$
 Applying the quadratic approximation iteratively across these subintervals, the integral is approximated as:
 
 $$
-\int_{a}^{b} f(x) \, dx \approx \frac{h}{3} \left[ f(a) + f(b) + 4 \sum_{\text{k odd }}_{1..N-1} f(x_i) + 2 \sum_{\text{even } i} f(x_i) + f(x_n) \right]
+\int_{a}^{b} f(x) \, dx \approx \frac{h}{3} \left[ f(a) + f(b) + 4 \sum_{\text{odd } k}^{1...N-1} f(a + kh) + 2 \sum_{\text{even } k}^{2...N-2} f(a+kh)\right]
 $$
 
-where:
-
-- \( x_i = a + i h \) for \( i = 0, 1, 2, \dots, n \),
-- The summation over odd \( i \) includes terms where \( i \) is odd,
-- The summation over even \( i \) includes terms where \( i \) is even but excludes \( x_0 \) and \( x_n \).
-
-This follows directly from integrating a piecewise quadratic approximation across multiple subintervals, forming Simpson’s Rule.
 
 
 ---
