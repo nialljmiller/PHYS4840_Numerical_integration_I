@@ -113,19 +113,12 @@ $$
 C = f(0)
 $$
 
-Since integration of a quadratic function is straightforward, we integrate \( Q(x) \) over the interval \( [-h, h] \):
+Since integration of a quadratic function is straightforward, we integrate $f(x)$ over the interval \texttt{[-h, h]}:
 
 $$
 \int_{-h}^{h}(Ax^2 + Bx + C)dx = \frac{2}{3}Ah^3 + 2Ch = \frac{1}{3}h[f(-h) + 4f(0) + f(h)]
 $$
 
-Since we apply this process **piecewise** over the entire interval \( [a, b] \), we sum over all subintervals of size \( h \):
-
-$$
-A \approx \frac{h}{3} \sum_{k=0,2,4}^{N-2} \big[ f(x_k) + 4 f(x_{k+1}) + f(x_{k+2}) \big]
-$$
-
-where \( h = \frac{b - a}{N} \) and \( N \) must be **even** to ensure we always have sets of three points.
 
 ---
 
