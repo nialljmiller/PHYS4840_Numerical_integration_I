@@ -126,7 +126,7 @@ $$
 
 which forms the basis of Simpson's Rule.
 
-\section{Area Approximation Over an Interval}
+## Area Approximation Over an Interval
 
 Extending this idea to an interval \([a, b]\), we divide it into \( n \) subintervals of equal width \( h \), where:
 
