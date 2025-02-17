@@ -17,10 +17,7 @@ def trapezoidal_rule(f, a, b, N):
     # Step size
     h = (b - a) / N
 
-    # Compute first and last terms separately (weight 1/2 in formula)
-    x0 = a
-    xN = b
-    integral = (1/2) * (f(x0) + f(xN)) * h  # Matches the first & last term in the sum
+    integral = (1/2) * (f(a) + f(b)) * h  # Matches the first & last term in the sum
 
     # Loop through k=1 to N-1 to sum the middle terms
     for k in range(1, N):
@@ -39,6 +36,9 @@ integral_approx = trapezoidal_rule(f, a, b, N)
 print("Approximated Integral with N=50:", integral_approx)
 
 
+
+
+
 # Example usage with empirical data (handling precomputed values directly)
 def empirical_trapezoidal_rule(y_values, x_values, N):
     """
@@ -52,7 +52,8 @@ def empirical_trapezoidal_rule(y_values, x_values, N):
     Returns:
         float: The approximated integral.
     """
-    a, b = x_values[0], x_values[-1]
+    a = x_values[0]
+    b = x_values[-1]
     h = x_values[1] - x_values[0]
 
     integral = (1/2) * (y_values[0] + y_values[-1]) * h  # First and last terms

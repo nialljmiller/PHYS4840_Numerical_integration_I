@@ -40,6 +40,8 @@ integral_approx = simpsons_rule(f, a, b, N)
 print("Approximated Integral with Simpson's Rule (N=50):", integral_approx)
 
 
+
+
 # Simpson's rule for empirical data
 def empirical_simpsons_rule(y_values, x_values, N):
     """
