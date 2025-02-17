@@ -1,13 +1,13 @@
 **Week 5 - Tuesday, February 18**  
 **Numerical Integration I: Trapezoidal Rule, Simpson’s Rule, Error Analysis, Romberg Integration**  
-**Sections: 5.1, 5.2, 5.3, 5.4**  
+**Sections: 5.1, 5.2, 5.3, 5.4 -- COMPUTATIONAL PHYSICS - Mark Newman**  
 
 ### **Introduction to Numerical Integration**  
 Numerical integration is a fundamental technique for approximating definite integrals when analytical solutions are difficult or impossible to obtain. We will explore several methods, including:
 - The **Trapezoidal Rule**
 - **Simpson’s Rule**
-- **Error Analysis**
 - **Romberg Integration**
+- **Error Analysis**
 
 ---
 # Numerical Integration: Trapezoidal, Simpson's Rule and Romberg
@@ -289,63 +289,95 @@ This function:
 
 
 
-
-
 ---
 
 ### **3. Error Analysis in Numerical Integration**  
-Each method introduces some level of error. The error for:
-- The **Trapezoidal Rule** is \( O(h^2) \)
-- **Simpson’s Rule** is \( O(h^4) \)
-- More sophisticated methods (e.g., Romberg) further improve accuracy.
+Each numerical integration method introduces some level of **error**, which depends on the function’s smoothness and the choice of subinterval width \( h \).  
 
-#### **Example: Comparing Errors**
-We can compare errors numerically using an example function \( f(x) = e^{-x^2} \).
+The leading-order error for:  
+- The **Trapezoidal Rule** is \( O(h^2) \)  
+- **Simpson’s Rule** is \( O(h^4) \)  
+- More sophisticated methods (e.g., **Romberg**) systematically eliminate these errors for even greater accuracy.  
+
+---
+
+### **Euler-Maclaurin Formula and Error Terms**  
+
+The **Euler-Maclaurin formula** provides a way to express the error in numerical integration methods in terms of derivatives of the function.  
+
+For the **Trapezoidal Rule**, applying Euler-Maclaurin leads to the **error term**:  
+
+$$
+E_T \approx -\frac{(b-a)h^2}{12} f''(\xi), \quad \xi \in [a, b]
+$$  
+
+This shows that the **error scales as \( O(h^2) \)**, meaning halving \( h \) reduces the error by a factor of **4**.  
+
+For **Simpson’s Rule**, a similar derivation gives:  
+
+$$
+E_S \approx -\frac{(b-a)h^4}{180} f''''(\xi), \quad \xi \in [a, b]
+$$  
+
+which demonstrates the **\( O(h^4) \) scaling**—halving \( h \) now reduces the error by a factor of **16**.  
+
+These results justify why **Simpson’s Rule is significantly more accurate than the Trapezoidal Rule** when the function is sufficiently smooth.  
+
+---
+
+### **Example: Comparing Errors Numerically**  
+
+To illustrate the differences in error behavior, we approximate the integral:  
+
+$$
+I = \int_0^1 e^{-x^2} dx
+$$  
+
+which does not have a simple closed-form solution, but can be accurately estimated using high-precision numerical techniques.  
+
 ```python
+import numpy as np
 import matplotlib.pyplot as plt
+from scipy.integrate import quad
 
 def f(x):
     return np.exp(-x**2)
 
-exact = #something_we_know_is_true
+# Compute "exact" integral using high-precision quadrature
+exact, _ = quad(f, 0, 1)
+
+# Define subintervals
 ns = np.arange(2, 50, 2)
+
+# Compute errors for Trapezoidal and Simpson’s Rule
 errors_trapz = [abs(trapezoidal_rule(f, 0, 1, n) - exact) for n in ns]
 errors_simpson = [abs(simpsons_rule(f, 0, 1, n) - exact) for n in ns]
 
-plt.loglog(ns, errors_trapz, label='Trapezoidal Error')
-plt.loglog(ns, errors_simpson, label='Simpson’s Error')
+# Plot error behavior on a log-log scale
+plt.figure(figsize=(8, 5))
+plt.loglog(ns, errors_trapz, label='Trapezoidal Error', marker='o')
+plt.loglog(ns, errors_simpson, label='Simpson’s Error', marker='s')
 plt.legend()
 plt.xlabel('Number of Subintervals (n)')
 plt.ylabel('Absolute Error')
+plt.title('Error Comparison of Trapezoidal and Simpson’s Rule')
+plt.grid(True)
 plt.show()
 ```
 
 ---
 
+### **Key Observations**  
+
+1. **Trapezoidal Rule** exhibits an **\( O(h^2) \)** error decay, meaning a linear trend in a log-log plot with slope **-2**.  
+2. **Simpson’s Rule** follows an **\( O(h^4) \)** error decay, meaning its error decreases much faster with increasing \( n \).  
+3. **Romberg Integration** (not shown here) further refines the trapezoidal estimates, achieving even better accuracy.  
 
 
-
-#### **Algorithm Outline:**  
-1. Compute trapezoidal approximations for various step sizes.
-2. Use extrapolation to estimate the integral with higher accuracy.
-
-#### **Python Implementation:**
-```python
-from scipy.integrate import romberg
-
-result = romberg(f, 0, 1)
-print("Romberg Integration Result:", result)
-```
 
 ---
 
-### **Summary**
-- **Trapezoidal Rule**: First-order accurate, simple, but not highly precise.
-- **Simpson’s Rule**: More accurate than Trapezoidal, but requires an even number of intervals.
-- **Error Analysis**: Shows how methods compare in convergence.
-- **Romberg Integration**: Uses refinement to achieve higher accuracy.
 
----
 
 ### **Next Class: Thursday, February 20**  
 **Topic:** Numerical Integration II - Gauss-Legendre Quadrature  
