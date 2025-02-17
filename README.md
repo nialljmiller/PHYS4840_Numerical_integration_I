@@ -226,12 +226,12 @@ This results in a **table of values**, where each row refines the previous rowâ€
 
 The Romberg method fills in a triangular table as follows:
 
-| \( m \) | \( R_{m,0} \) | \( R_{m,1} \) | \( R_{m,2} \) | \( R_{m,3} \) | ... |
+| \( $m$ \) | \( $R_{m,0}$ \) | \( $R_{m,1}$ \) | \( $R_{m,2}$ \) | \( $R_{m,3}$ \) | ... |
 |---|---|---|---|---|---|
-| 0 | \( T_0 \) | - | - | - | - |
-| 1 | \( T_1 \) | \( R_{1,1} \) | - | - | - |
-| 2 | \( T_2 \) | \( R_{2,1} \) | \( R_{2,2} \) | - | - |
-| 3 | \( T_3 \) | \( R_{3,1} \) | \( R_{3,2} \) | \( R_{3,3} \) | - |
+| 0 | \( $T_0$ \) | - | - | - | - |
+| 1 | \( $T_1$ \) | \( $R_{1,1}$ \) | - | - | - |
+| 2 | \( $T_2$ \) | \( $R_{2,1}$ \) | \( $R_{2,2}$ \) | - | - |
+| 3 | \( $T_3$ \) | \( $R_{3,1}$ \) | \( $R_{3,2}$ \) | \( $R_{3,3}$ \) | - |
 | ... | ... | ... | ... | ... | ... |
 
 Each new column refines the previous estimates, improving the accuracy of the integral.
