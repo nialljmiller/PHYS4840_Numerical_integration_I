@@ -113,28 +113,38 @@ $$
 C = f(0)
 $$
 
-Since integration of a quadratic function is straightforward, we integrate $f(x)$ over the interval \texttt{[-h, h]}:
+Since integration of a quadratic function is straightforward, we integrate $f(x)$ over the interval [-h, h]:
 
 $$
 \int_{-h}^{h}(Ax^2 + Bx + C)dx = \frac{2}{3}Ah^3 + 2Ch = \frac{1}{3}h[f(-h) + 4f(0) + f(h)]
 $$
+
+and so if, as before, we are integrating from $x = a$ to $x = b$ in slices of width `$h$' then the first thee slices would be $x = a, a+ h, a + 2h$.
+
 
 
 ---
 
 ## Area Approximation
 
-Expanding the summation, the full Simpson’s Rule formula is:
+$$
+\int_{a}^{b} f(x) \, dx \approx \frac{b-a}{6} \left[ f(a) + 4f\left(\frac{a+b}{2}\right) + f(b) \right]
+$$
+
+For a more general case, where we divide the interval \([a,b]\) into an even number \( n \) of subintervals:
 
 $$
-A \approx \frac{h}{3} \Bigg[ f(a) + f(b) + 4 \sum_{k=1,3,5}^{N-1} f(a + kh) + 2 \sum_{k=2,4,6}^{N-2} f(a + kh) \Bigg]
+\int_{a}^{b} f(x) \, dx \approx \frac{h}{3} \left[ f(x_0) + 4 \sum_{\text{odd } i} f(x_i) + 2 \sum_{\text{even } i} f(x_i) + f(x_n) \right]
 $$
 
 where:
 
-- The function values at the **endpoints** \( f(a) \) and \( f(b) \) appear once.
-- The function values at **odd indices** are multiplied by **4**.
-- The function values at **even indices** are multiplied by **2**.
+- \( h = \frac{b-a}{n} \) is the width of each subinterval,
+- \( x_i = a + i h \), for \( i = 0, 1, 2, \dots, n \),
+- The summation over odd \( i \) includes terms where \( i \) is odd,
+- The summation over even \( i \) includes terms where \( i \) is even but excludes \( x_0 \) and \( x_n \).
+
+
 
 ---
 
