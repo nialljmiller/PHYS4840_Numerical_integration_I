@@ -34,34 +34,6 @@ $$
 where **h** is the width of each subinterval. We approximate $f(x)$ as a straight line between consecutive points. (h is width here because this method `rotates' the trapezium).
 ...N seems important here...
 
-## Linear Approximation Between Points
-
-The equation of a straight line between two points $(x_k, f(x_k))$ and $(x_{k+1}, f(x_{k+1}))$ is given by:
-
-$$
- f(x) = m x + c
-$$
-
-where the slope **m** is:
-
-$$
-m = \frac{f(x_{k+1}) - f(x_k)}{x_{k+1} - x_k}
-$$
-
-and the intercept would be:
-
-$$
-c = f(x_k)
-$$
-
-as this is the y value at the initial x - $x_k$
-
-Since we define the function at $x_k$ to be the starting point of the interval, the equation simplifies to:
-
-$$
-G(x) = \frac{f(x_{k+1}) - f(x_k)}{h} (x - x_k) + f(x_k)
-$$
-
 
 ## Area Approximation
 
