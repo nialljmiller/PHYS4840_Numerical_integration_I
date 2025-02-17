@@ -144,7 +144,7 @@ $$
 Since integration of a quadratic function is straightforward, we integrate \( Q(x) \) over the interval \( [-h, h] \):
 
 $$
-\int_{-h}^{h} Q(x) dx = \frac{h}{3} \big[ f(-h) + 4f(0) + f(h) \big]
+\int_{-h}^{h}(Ax^2 + Bx + C)dx = \frac{2}{3}Ah^3 + 2Ch = \frac{1}{3}h[f(-h) + 4f(0) + f(h)]
 $$
 
 Since we apply this process **piecewise** over the entire interval \( [a, b] \), we sum over all subintervals of size \( h \):
