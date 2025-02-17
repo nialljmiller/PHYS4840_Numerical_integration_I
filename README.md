@@ -67,9 +67,18 @@ $$
 A \approx h \Bigg[ \frac{1}{2}f(a) + \frac{1}{2}f(b) + \sum_{k=1}^{N-1} f(a + hk) \Bigg]
 $$
 
+
+```python
+
+def trapezoidal_rule(f, a, b, n):
+    x = np.linspace(a, b, n+1)
+    y = f(x)
+    h = (b - a) / n
+    return (h / 2) * (y[0] + 2 * np.sum(y[1:-1]) + y[-1])
+
+```
+
 ---
-
-
 
 ## Simpson’s Rule - Approximating with a Quadratic
 
@@ -146,23 +155,11 @@ $$
 \int_{a}^{b} f(x) \, dx \approx \frac{h}{3} \left[ f(a) + f(b) + 4 \sum_{\text{odd } k}^{1...N-1} f(a + kh) + 2 \sum_{\text{even } k}^{2...N-2} f(a+kh)\right]
 $$
 
+$$
+\int_{a}^{b} f(x) \, dx \approx \frac{h}{3} \left[ f(a) + f(b) + 4 \sum_{\text{odd } k}^{1...N-1} f(x_N) + 2 \sum_{\text{even } k}^{2...N-2} f(x_N)\right]
+$$
 
----
 
-## Python Implementations
-
-### **Trapezoidal Rule Implementation**
-```python
-
-def trapezoidal_rule(f, a, b, n):
-    x = np.linspace(a, b, n+1)
-    y = f(x)
-    h = (b - a) / n
-    return (h / 2) * (y[0] + 2 * np.sum(y[1:-1]) + y[-1])
-
-```
-
-### **Simpson’s Rule Implementation**
 ```python
 
 def simpsons_rule(f, a, b, n):
@@ -174,7 +171,11 @@ def simpsons_rule(f, a, b, n):
     return (h/3) * (y[0] + 4*np.sum(y[1:n:2]) + 2*np.sum(y[2:n-1:2]) + y[-1])
 ```
 
-This explanation makes it clear that the difference between the methods is **how we approximate the function**: a line for Trapezoidal and a parabola for Simpson’s.
+---
+
+
+### **4. Romberg Integration**  
+Romberg Integration extends the Trapezoidal Rule by using Richardson Extrapolation to improve accuracy.
 
 
 ---
@@ -208,8 +209,8 @@ plt.show()
 
 ---
 
-### **4. Romberg Integration**  
-Romberg Integration extends the Trapezoidal Rule by using Richardson Extrapolation to improve accuracy.
+
+
 
 #### **Algorithm Outline:**  
 1. Compute trapezoidal approximations for various step sizes.
