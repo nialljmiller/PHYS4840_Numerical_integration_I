@@ -181,6 +181,77 @@ The **Romberg Integration** method builds upon the **Trapezoidal Rule** by apply
 
 ## **Error Reduction by Richardson Extrapolation**  
 
+
+
+## **Derivation of Richardson Extrapolation**
+We have:
+
+$$
+A(h) = A + C h^p
+$$
+
+$$
+A(h/2) = A + C (h/2)^p
+$$
+
+Now, subtract these two equations:
+
+$$
+A(h/2) - A(h) = C (h/2)^p - C h^p
+$$
+
+Factor out \( C h^p \):
+
+$$
+A(h/2) - A(h) = C h^p \left( \frac{1}{2^p} - 1 \right)
+$$
+
+Solve for \( A \):
+
+$$
+A = A(h/2) + \frac{A(h/2) - A(h)}{2^p - 1}
+$$
+
+This is **Richardson Extrapolation**.
+
+---
+
+## **Example with Trapezoidal Rule (where \( p = 2 \))**
+For the trapezoidal rule, the error is \( O(h^2) \), so we set \( p = 2 \):
+
+$$
+A = A(h/2) + \frac{A(h/2) - A(h)}{4 - 1}
+$$
+
+or
+
+$$
+A = \frac{4 A(h/2) - A(h)}{3}
+$$
+
+This new \( A \) is **much more accurate** because the error term \( C h^2 \) is removed!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 The error in the **Trapezoidal Rule** scales as:
 
 $$
@@ -294,7 +365,7 @@ This function:
 
 ---
 
-### **3. Error Analysis in Numerical Integration**  
+### **Error Analysis in Numerical Integration**  
 Each numerical integration method introduces some level of **error**, which depends on the function’s smoothness and the choice of subinterval width \( h \).  
 
 The leading-order error for:  
