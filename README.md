@@ -186,7 +186,7 @@ $$
 where:
 - \( $A$ \) is the **true value** of what we're trying to compute.
 - \( $C h^p$ \) is the **leading error term** (the main source of inaccuracy).
-- \( $p$ \) is the **order of the error** (e.g., for the trapezoidal rule, \( $p = 2$ \), meaning the error is proportional to \( $h^2$ \)).
+- \( $p$ \) is the **order of the error** (for the trapezoidal rule, \( $p = 2$ \)).
 
 If we compute the approximation again with **a smaller step size** \( $h/2$ \), we get:
 
