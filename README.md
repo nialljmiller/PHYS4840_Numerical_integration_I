@@ -172,123 +172,84 @@ def simpsons_rule(f, a, b, n):
 ```
 
 ---
+## **Romberg Integration: Refining the Trapezoidal Rule with Extrapolation**  
 
-## **Romberg Integration - Refining the Trapezoidal Rule with Extrapolation**  
+**Romberg Integration** improves the **Trapezoidal Rule** by applying **Richardson Extrapolation**, which systematically reduces error terms for greater accuracy. Instead of computing a single integral approximation, Romberg Integration refines estimates step by step using a sequence of trapezoidal approximations at progressively smaller step sizes.
 
-The **Romberg Integration** method builds upon the **Trapezoidal Rule** by applying **Richardson Extrapolation**, which systematically removes error terms to produce a more accurate result. Instead of computing a single approximation, Romberg Integration refines the integral estimation step by step using a sequence of trapezoidal approximations.
+---
 
-If we approximate some quantity (like an integral) using a method with step size \( h \). The result will be:
+### **Error Analysis and Richardson Extrapolation**  
+If we approximate an integral using step size \( h \), the result can be expressed as:
 
-$$
-A(h) = A + C h^p + \text{(higher-order terms)}
-$$
+\[
+A(h) = A + C h^p + O(h^{p+2})
+\]
 
 where:
-- \( $A$ \) is the **true value** of what we're trying to compute.
-- \( $C h^p$ \) is the **leading error term** (the main source of inaccuracy).
-- \( $p$ \) is the **order of the error** (for the trapezoidal rule, \( $p = 2$ \)).
+- \( A \) is the **true integral value**.
+- \( C h^p \) is the **leading error term**.
+- \( p \) is the **order of accuracy** (for the Trapezoidal Rule, \( p = 2 \)).
 
-If we compute the approximation again with **a smaller step size** \( $h/2$ \), we get:
+If we refine the approximation with a smaller step size \( h/2 \), we get:
 
-$$
-A(h/2) = A + C (h/2)^p + \text{(higher-order terms)}
-$$
+\[
+A(h/2) = A + C (h/2)^p + O(h^{p+2})
+\]
 
-which is the same true value \( $A$ \), but with a smaller error term.
+Subtracting these two equations:
 
-Since we now have **two equations** for \( $A(h)$ \) and \( $A(h/2)$ \), we can **combine them algebraically** to eliminate the leading error term.
-
----
-
-## **Derivation of Richardson Extrapolation**
-We have:
-
-$$
-A(h) = A + C h^p
-$$
-
-$$
-A(h/2) = A + C (h/2)^p
-$$
-
-Now, subtract these two equations:
-
-$$
-A(h/2) - A(h) = C (h/2)^p - C h^p
-$$
-
-Factor out \( C h^p \):
-
-$$
+\[
 A(h/2) - A(h) = C h^p \left( \frac{1}{2^p} - 1 \right)
-$$
+\]
 
-Solve for \( A \):
+Solving for \( A \):
 
-$$
-A = A(h/2) + \frac{A(h/2) - A(h)}{2^p - 1}
-$$
+\[
+A \approx A(h/2) + \frac{A(h/2) - A(h)}{2^p - 1}
+\]
 
-This is **Richardson Extrapolation**.
+This process, known as **Richardson Extrapolation**, removes the leading error term, significantly improving accuracy.
+
+For the **Trapezoidal Rule** (where \( p = 2 \)), this simplifies to:
+
+\[
+A \approx \frac{4 A(h/2) - A(h)}{3}
+\]
+
+---
+
+### **Romberg Integration Procedure**  
+Romberg Integration iteratively applies the **Trapezoidal Rule** and Richardson Extrapolation to construct a table of increasingly accurate integral approximations.
+
+1. **Compute the initial trapezoidal estimates:**
+   \[
+   R_{m,0} = T_m
+   \]
+   where \( T_m \) is the Trapezoidal Rule approximation using \( 2^m \) intervals:
+   
+   \[
+   T_m = \frac{h_m}{2} \left[ f(a) + f(b) + 2 \sum_{k=1}^{2^m-1} f(a + k h_m) \right]
+   \]
+   with step size:
+   
+   \[
+   h_m = \frac{b-a}{2^m}
+   \]
+
+2. **Apply Richardson Extrapolation recursively:**
+   
+   \[
+   R_{m, n} = \frac{4^n R_{m, n-1} - R_{m-1, n-1}}{4^n - 1}
+   \]
+   
+   This removes higher-order error terms, systematically improving the estimate.
+
+3. **Construct a Romberg Table:**
+   
+   Each row refines the previous row’s estimates, yielding a final value with high precision.
 
 ---
 
-## **Example with Trapezoidal Rule (where \( $p = 2$ \))**
-For the trapezoidal rule, the error is \( $O(h^2)$ \), so we set \( $p = 2$ \):
-
-$$
-A = A(h/2) + \frac{A(h/2) - A(h)}{4 - 1}
-$$
-
-or
-
-$$
-A = \frac{4 A(h/2) - A(h)}{3}
-$$
-
-This new \( A \) is **much more accurate** because the error term \( C h^2 \) is removed!
-
-
-The error in the **Trapezoidal Rule** scales as:
-
-$$
-E_T = C h^2 + \mathcal{O}(h^4)
-$$
-
-where \( C \) is some constant and \( h \) is the step size. The key idea of **Romberg Integration** is to combine multiple **Trapezoidal Rule** estimates at different step sizes to systematically eliminate the leading error term.
-
-To do this, we define:
-
-$$
-R_{m,0} = T_m
-$$
-
-where \( T_m \) is the **Trapezoidal Rule** approximation using \( 2^m \) intervals:
-
-$$
-T_m = \frac{h_m}{2} \left[ f(a) + f(b) + 2 \sum_{k=1}^{2^m-1} f(a + k h_m) \right]
-$$
-
-where the step size is:
-
-$$
-h_m = \frac{b-a}{2^m}
-$$
-
-We then apply Richardson Extrapolation recursively:
-
-$$
-R_{m, n} = \frac{4^n R_{m, n-1} - R_{m-1, n-1}}{4^n - 1}
-$$
-
-where \( $R_{m, n}$ \) is the improved estimate using the results of lower-order approximations.
-The index nn in \( $R_{m, n}$ \) represents the level of extrapolation applied to refine the integral approximation.
-\( $R_{m, n}$ \) is the n-th level extrapolated value derived from previous approximations to remove higher-order error terms.
-
-
-This results in a **table of values**, where each row refines the previous row’s estimates.
-
----
 
 ## **Romberg Integration Table**  
 
