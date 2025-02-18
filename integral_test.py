@@ -1,7 +1,7 @@
 import numpy as np
 import time
 
-# Example usage with empirical data (handling precomputed values directly)
+# Example usage with array data
 def trapezoidal(y_values, x_values, N):
     """
     Approximates the integral using trapezoidal rule for given y_values at given x_values.
@@ -14,9 +14,9 @@ def trapezoidal(y_values, x_values, N):
     Returns:
         float: The approximated integral.
     """
-    a = x_values[0]
-    b = x_values[-1]
-    h = (b - a) / N  # Properly calculating h
+    a = 
+    b = 
+    h = 
 
     integral = (1/2) * (y_values[0] + y_values[-1]) * h  # First and last terms
 
@@ -28,7 +28,7 @@ def trapezoidal(y_values, x_values, N):
     return integral
 
 
-# Simpson's rule for empirical data
+# Simpson's rule for array data
 def simpsons(y_values, x_values, N):
     """
     Approximates the integral using Simpson's rule for given y_values at given x_values.
@@ -41,13 +41,12 @@ def simpsons(y_values, x_values, N):
     Returns:
         float: The approximated integral.
     """
-    if N % 2 == 1:
-        raise ValueError("N must be even for Simpson's rule.")
 
-    a, b = x_values[0], x_values[-1]
-    h = (b - a) / N
+    a =
+    b = 
+    h = 
 
-    integral = y_values[0] + y_values[-1]  # First and last terms
+    integral = # First and last y_value terms
 
     for k in range(1, N, 2):  # Odd indices (weight 4)
         xk = a + k * h
@@ -62,7 +61,7 @@ def simpsons(y_values, x_values, N):
     return (h / 3) * integral  # Final scaling
 
 
-# Romberg integration for empirical data
+# Romberg integration for array data
 def romberg(y_values, x_values, max_order):
     """
     Approximates the integral using Romberg's method for given y_values at given x_values.
@@ -76,7 +75,8 @@ def romberg(y_values, x_values, max_order):
         float: The approximated integral.
     """
     R = np.zeros((max_order, max_order))
-    a, b = x_values[0], x_values[-1]
+    a =
+    b =
     N = 1
     h = (b - a)
 
@@ -84,8 +84,8 @@ def romberg(y_values, x_values, max_order):
     R[0, 0] = (h / 2) * (y_values[0] + y_values[-1])
 
     for i in range(1, max_order):
-        N *= 2
-        h /= 2
+        N = #Remember: we are recomputing the integral with different N (and therefore h)
+        h = #Look at the github derivation for richardson extrapolation
 
         sum_new_points = sum(np.interp(a + k * h, x_values, y_values) for k in range(1, N, 2))
         R[i, 0] = 0.5 * R[i - 1, 0] + h * sum_new_points
@@ -96,7 +96,7 @@ def romberg(y_values, x_values, max_order):
     return R[max_order - 1, max_order - 1]
 
 
-def timing_function(integration_method, x_values, y_values, steps=10, *args):
+def timing_function(integration_method, x_values, y_values, integral_arg):
     """
     Times the execution of an integration method.
 
@@ -104,55 +104,50 @@ def timing_function(integration_method, x_values, y_values, steps=10, *args):
         integration_method (function): The numerical integration function.
         x_values (array-like): The x values.
         y_values (array-like): The corresponding y values.
-        steps (int, optional): Number of intervals to use.
-        *args: Additional arguments for the integration method.
+        integral_arg (int, optional): EITHER Number of intervals to use (Simpson/Trapz) OR the maximum order of extrapolation (Romberg).
 
     Returns:
         tuple: (execution_time, integration_result)
     """
-    start_time = time.time()
-    result = integration_method(y_values, x_values, steps, *args)
-    end_time = time.time()
+    start_time = 
+    result = integration_method(y_values, x_values, integral_arg)
+    end_time = 
     
     return end_time - start_time, result
 
 
 
+# Function to integrate
+def function(x):
+    return x * np.exp(-x)
 
-# Define function and generate sample data
-f = lambda x: x * np.exp(-x)
+# Precompute data for fair comparisons
+x_data = np.linspace(0, 1, 100000000)  # High-resolution x values
+y_data = function(x_data)
 
-x_data = np.linspace(0, 1, 1000000)  # Generate x values
-y_data = f(x_data)  # Compute corresponding y values
+# Testing parameters
+N = # Number of intervals
+max_order = # Romberg's accuracy level
 
-# Testing the integration methods with N=10 (adjustable)
-N = 10  # Must be even for Simpson's method
-max_order = 5  # Romberg's accuracy level
-
-# Compute integrals
-trap_result = trapezoidal(y_data, x_data, N)
-simp_result = simpsons(y_data, x_data, N)
-romb_result = romberg(y_data, x_data, max_order)
-
-# Measure timing
-trap_time, _ = timing_function(trapezoidal, x_data, y_data, N)
-simp_time, _ = timing_function(simpsons, x_data, y_data, N)
-romb_time, _ = timing_function(romberg, x_data, y_data, max_order)
+# Measure timing for custom methods
+trap_time, trap_result = timing_function(trapezoidal, x_data, y_data, N)
+simp_time, simp_result = timing_function(simpsons, x_data, y_data, N)
+romb_time, romb_result = timing_function(romberg, x_data, y_data, max_order)
 
 # True integral value
 true_value = 0.26424111765711535680895245967707826510837773793646433098432639660507700851
 
 # Compute errors
-trap_error = abs(trap_result - true_value)
-simp_error = abs(simp_result - true_value)
-romb_error = abs(romb_result - true_value)
+trap_error = 
+simp_error = 
+romb_error = 
 
 # Print results with error analysis
 print("\nIntegration Method Comparison")
-print("=" * 50)
-print(f"{'Method':<20}{'Result':<20}{'Error':<20}{'Time (sec)':<10}")
-print("-" * 50)
-print(f"{'Trapezoidal Rule':<20}{trap_result:<20.8f}{trap_error:<20.8e}{trap_time:<10.6f}")
-print(f"{'Simpson\'s Rule':<20}{simp_result:<20.8f}{simp_error:<20.8e}{simp_time:<10.6f}")
-print(f"{'Romberg Integration':<20}{romb_result:<20.8f}{romb_error:<20.8e}{romb_time:<10.6f}")
-print("=" * 50)
+print("=" * 80) # why 80? https://peps.python.org/pep-0008/
+print(f"{'Method':<25}{'Result':<20}{'Error':<20}{'Time (sec)':<15}")
+print("-" * 80)
+print(f"{'Custom Trapezoidal':<25}{trap_result:<20.8f}{trap_error:<20.8e}{trap_time:<15.6f}")
+print(f"{'Custom Simpson\'s':<25}{simp_result:<20.8f}{simp_error:<20.8e}{simp_time:<15.6f}")
+print(f"{'Custom Romberg':<25}{romb_result:<20.8f}{romb_error:<20.8e}{romb_time:<15.6f}")
+print("=" * 80)
