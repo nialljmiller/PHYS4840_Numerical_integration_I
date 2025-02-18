@@ -14,12 +14,12 @@ Numerical integration is a fundamental technique for approximating definite inte
 
 ## Understanding the Function Approximation
 
-Numerical integration approximates the integral of a function by replacing the function with a simpler shape. The key idea is to approximate $**f(x)**$ by a piecewise-defined function, which is either:
+Numerical integration approximates the integral of a function by replacing the function with a simpler shape. The key idea is to approximate **$f(x)$** by a piecewise-defined function, which is either:
 
 - A **linear function** (for the Trapezoidal Rule)
 - A **quadratic function** (for Simpson’s Rule)
 
-We then integrate these simple functions instead of the original $**f(x)**$. 
+We then integrate these simple functions instead of the original **$f(x)$**. 
 
 ---
 
@@ -82,18 +82,18 @@ def trapezoidal_rule(f, a, b, n):
 
 ## Simpson’s Rule - Approximating with a Quadratic
 
-The **Simpson’s Rule** method improves upon the **Trapezoidal Rule** by approximating the function using a **quadratic function** instead of a straight line. Instead of approximating \( f(x) \) between two points, we assume that over a small interval, the function behaves like a **parabola**.
+The **Simpson’s Rule** method improves upon the **Trapezoidal Rule** by approximating the function using a **quadratic function** instead of a straight line. Instead of approximating \( $f(x)$ \) between two points, we assume that over a small interval, the function behaves like a **parabola**.
 
 ---
 
 ## Quadratic Approximation Between Points
-We approximate \( f(x) \) using a quadratic polynomial of the form:
+We approximate \( $f(x)$ \) using a quadratic polynomial of the form:
 
 $$
 f(x) = Ax^2 + Bx + C
 $$
 
-Given three equally spaced points \( x = -h, 0, h \), we have:
+Given three equally spaced points \( $x = -h, 0, h$ \), we have:
 
 $$
 f(-h) = A h^2 - B h + C
@@ -146,17 +146,13 @@ $$
 The points are:
 
 $$
-x_0 = a, \quad x_1 = a + h, \quad x_2 = a + 2h, \quad \dots, \quad x_n = b
+x_0 = a, \quad x_1 = a + h, \quad x_2 = a + 2h, \quad x_2 = a + 3h, \quad \dots, \quad x_n = b
 $$
 
 Applying the quadratic approximation iteratively across these subintervals, the integral is approximated as:
 
 $$
 \int_{a}^{b} f(x) \, dx \approx \frac{h}{3} \left[ f(a) + f(b) + 4 \sum_{\text{odd } k}^{1...N-1} f(a + kh) + 2 \sum_{\text{even } k}^{2...N-2} f(a+kh)\right]
-$$
-
-$$
-\int_{a}^{b} f(x) \, dx \approx \frac{h}{3} \left[ f(a) + f(b) + 4 \sum_{\text{odd } k}^{1...N-1} f(x_N) + 2 \sum_{\text{even } k}^{2...N-2} f(x_N)\right]
 $$
 
 
