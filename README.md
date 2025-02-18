@@ -242,14 +242,6 @@ $$
 R_{m, n} = \frac{4^n R_{m, n-1} - R_{m-1, n-1}}{4^n - 1}
 $$
 
-This removes higher-order error terms, systematically improving the estimate.
-
-Each row refines the previous row’s estimates, yielding a final value with high precision.
-
----
-
-
-## **Romberg Integration Table**  
 
 The Romberg method fills in a triangular table as follows:
 
@@ -261,7 +253,6 @@ The Romberg method fills in a triangular table as follows:
 | 3 | \( $T_3$ \) | \( $R_{3,1}$ \) | \( $R_{3,2}$ \) | \( $R_{3,3}$ \) | - |
 | ... | ... | ... | ... | ... | ... |
 
-Each new column refines the previous estimates, improving the accuracy of the integral.
 
 ---
 
