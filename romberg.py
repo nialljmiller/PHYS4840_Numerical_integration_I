@@ -40,9 +40,9 @@ def function(x):
 
 a = 0  # Integration bounds
 b = 1  # Integration bounds
-N = # Number of trapezoids
+max_order = # Number of refinements
 
-integral_approx = romberg_rule(function, a, b, N)
+integral_approx = romberg_rule(function, a, b, max_order)
 print(f"Approximated Integral with N={N}: {integral_approx}")
 
 #Hint: the integral of e^(-x**2) between 0 and 1 is 0.746824132812427

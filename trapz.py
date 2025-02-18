@@ -14,8 +14,8 @@ def trapezoidal_rule(f, a, b, N):
     Returns:
         float: The approximated integral.
     """
-    # Step size
-    h = (b-a)/N
+    
+    h = # Step size
 
     integral = (1/2) * (f(a) + f(b)) * h  # Matches the first & last term in the sum
 

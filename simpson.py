@@ -13,12 +13,10 @@ def simpsons_rule(f, a, b, N):
     Returns:
         float: The approximated integral.
     """
-    #if N % 2 == 1:
-    #    raise ValueError("N must be even for Simpson's rule.")
 
-    h = (b - a) / N  # Step size
+    h = # Step size
     integral = f(a) + f(b)  # First and last terms
-
+    
     # Loop through k=1 to N-1
     for k in range(1, N, 2):  # Odd indices (weight 4)
         xk = a + k * h
@@ -36,7 +34,7 @@ def function(x):
 
 a = 0  # Integration bounds
 b = 1  # Integration bounds
-N = # Number of trapezoids
+N = # Number of sections (what happens if this is odd, why?)
 
 integral_approx = simpsons_rule(function, a, b, N)
 print(f"Approximated Integral with N={N}: {integral_approx}")
