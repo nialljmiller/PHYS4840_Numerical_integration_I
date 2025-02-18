@@ -1,14 +1,17 @@
 def functionA(a, b, c):
     value = a
-    value = value + functionB(b, c)  + functionC(x = b, y = c)
+    value = value + functionB(b, c) + functionC(y = b, x = a)
     return value
 
-def functionB(x, y): #function B does not care what its arguments are called
-    return x * y
+#function B does not care what the arguments are called, but it does care about the order. 
+def functionB(x, y): 
+	value = x * y    
+	return value
 
-def functionC(x = 0, y = 0):
+#function C does care -- this is the difference between args and kwargs
+def functionC(x = 'a', y = 'b'):
 	return x + y
 
-# Oop, we forgot to pass any arguments
+# Oops, we forgot to pass any arguments :(
 result = functionA()
 print(result)
