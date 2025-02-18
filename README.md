@@ -260,14 +260,8 @@ $$
 
 where \( R_{m, m} \) is the highest-order refinement available.
 
----
-
-## **Romberg Integration Implementation in Python**  
-
-The implementation follows the recursive structure described above, filling the **Romberg table** iteratively.
 
 ```python
-import numpy as np
 
 def romberg_integration(f, a, b, m):
     R = np.zeros((m+1, m+1))  
