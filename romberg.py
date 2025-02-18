@@ -62,7 +62,7 @@ def function(x):
 
 a = 0  # Integration bounds
 b = 1  # Integration bounds
-max_order =5# Number of refinements
+max_order =# Number of refinements
 
 integral_approx = romberg_rule(function, a, b, max_order)
 print(f"Approximated Integral with maximum order={max_order}: {integral_approx}")
