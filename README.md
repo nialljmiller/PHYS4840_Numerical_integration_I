@@ -179,42 +179,42 @@ def simpsons_rule(f, a, b, n):
 ---
 
 ### **Error Analysis and Richardson Extrapolation**  
-If we approximate an integral using step size \( h \), the result can be expressed as:
+If we approximate an integral using step size \( $h$ \), the result can be expressed as:
 
-\[
+$$
 A(h) = A + C h^p + O(h^{p+2})
-\]
+$$
 
 where:
-- \( A \) is the **true integral value**.
-- \( C h^p \) is the **leading error term**.
-- \( p \) is the **order of accuracy** (for the Trapezoidal Rule, \( p = 2 \)).
+- \( $A$ \) is the **true integral value**.
+- \( $C h^p$ \) is the **leading error term**.
+- \( $p$ \) is the **order of accuracy** (for the Trapezoidal Rule, \( $p = 2$ \)).
 
-If we refine the approximation with a smaller step size \( h/2 \), we get:
+If we refine the approximation with a smaller step size \( $h/2$ \), we get:
 
-\[
+$$
 A(h/2) = A + C (h/2)^p + O(h^{p+2})
-\]
+$$
 
 Subtracting these two equations:
 
-\[
+$$
 A(h/2) - A(h) = C h^p \left( \frac{1}{2^p} - 1 \right)
-\]
+$$
 
-Solving for \( A \):
+Solving for \( $A$ \):
 
-\[
+$$
 A \approx A(h/2) + \frac{A(h/2) - A(h)}{2^p - 1}
-\]
+$$
 
 This process, known as **Richardson Extrapolation**, removes the leading error term, significantly improving accuracy.
 
-For the **Trapezoidal Rule** (where \( p = 2 \)), this simplifies to:
+For the **Trapezoidal Rule** (where \( $p = 2$ \)), this simplifies to:
 
-\[
+$$
 A \approx \frac{4 A(h/2) - A(h)}{3}
-\]
+$$
 
 ---
 
@@ -222,25 +222,25 @@ A \approx \frac{4 A(h/2) - A(h)}{3}
 Romberg Integration iteratively applies the **Trapezoidal Rule** and Richardson Extrapolation to construct a table of increasingly accurate integral approximations.
 
 1. **Compute the initial trapezoidal estimates:**
-   \[
+   $$
    R_{m,0} = T_m
-   \]
-   where \( T_m \) is the Trapezoidal Rule approximation using \( 2^m \) intervals:
+   $$
+   where \( $T_m$ \) is the Trapezoidal Rule approximation using \( $2^m$ \) intervals:
    
-   \[
+   $$
    T_m = \frac{h_m}{2} \left[ f(a) + f(b) + 2 \sum_{k=1}^{2^m-1} f(a + k h_m) \right]
-   \]
+   $$
    with step size:
    
-   \[
+   $$
    h_m = \frac{b-a}{2^m}
-   \]
+   $$
 
 2. **Apply Richardson Extrapolation recursively:**
    
-   \[
+   $$
    R_{m, n} = \frac{4^n R_{m, n-1} - R_{m-1, n-1}}{4^n - 1}
-   \]
+   $$
    
    This removes higher-order error terms, systematically improving the estimate.
 
