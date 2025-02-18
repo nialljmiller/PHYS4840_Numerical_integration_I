@@ -189,6 +189,7 @@ where:
 - \( $A$ \) is the **true integral value**.
 - \( $C h^p$ \) is the **leading error term**.
 - \( $p$ \) is the **order of accuracy** (for the Trapezoidal Rule, \( $p = 2$ \)).
+- \( $O(h^{p+2})$ \) is all the smaller order terms.
 
 If we refine the approximation with a smaller step size \( $h/2$ \), we get:
 
