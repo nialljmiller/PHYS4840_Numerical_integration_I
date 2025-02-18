@@ -177,11 +177,6 @@ def simpsons_rule(f, a, b, n):
 
 The **Romberg Integration** method builds upon the **Trapezoidal Rule** by applying **Richardson Extrapolation**, which systematically removes error terms to produce a more accurate result. Instead of computing a single approximation, Romberg Integration refines the integral estimation step by step using a sequence of trapezoidal approximations.
 
----
-
-## **Error Reduction by Richardson Extrapolation**  
-
-## **Core Idea**
 If we approximate some quantity (like an integral) using a method with step size \( h \). The result will be:
 
 $$
@@ -252,26 +247,6 @@ A = \frac{4 A(h/2) - A(h)}{3}
 $$
 
 This new \( A \) is **much more accurate** because the error term \( C h^2 \) is removed!
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 The error in the **Trapezoidal Rule** scales as:
