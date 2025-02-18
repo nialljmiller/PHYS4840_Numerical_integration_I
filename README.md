@@ -222,35 +222,29 @@ $$
 ### **Romberg Integration Procedure**  
 Romberg Integration iteratively applies the **Trapezoidal Rule** and Richardson Extrapolation to construct a table of increasingly accurate integral approximations.
 
-1. **Compute the initial trapezoidal estimates:**
+$$
+R_{m,0} = T_m
+$$
 
-   $$
-   R_{m,0} = T_m
-   $$
+where \( $T_m$ \) is the Trapezoidal Rule approximation using \( $2^m$ \) intervals:
 
-   where \( $T_m$ \) is the Trapezoidal Rule approximation using \( $2^m$ \) intervals:
-   
-   $$
-   T_m = \frac{h_m}{2} \left[ f(a) + f(b) + 2 \sum_{k=1}^{2^m-1} f(a + k h_m) \right]
-   $$
+$$
+T_m = \frac{h_m}{2} \left[ f(a) + f(b) + 2 \sum_{k=1}^{2^m-1} f(a + k h_m) \right]
+$$
 
-   with step size:
-   
-   $$
-   h_m = \frac{b-a}{2^m}
-   $$
+with step size:
 
-2. **Apply Richardson Extrapolation recursively:**
-   
-   $$
-   R_{m, n} = \frac{4^n R_{m, n-1} - R_{m-1, n-1}}{4^n - 1}
-   $$
-   
-   This removes higher-order error terms, systematically improving the estimate.
+$$
+h_m = \frac{b-a}{2^m}
+$$
 
-3. **Construct a Romberg Table:**
-   
-   Each row refines the previous row’s estimates, yielding a final value with high precision.
+$$
+R_{m, n} = \frac{4^n R_{m, n-1} - R_{m-1, n-1}}{4^n - 1}
+$$
+
+This removes higher-order error terms, systematically improving the estimate.
+
+Each row refines the previous row’s estimates, yielding a final value with high precision.
 
 ---
 
