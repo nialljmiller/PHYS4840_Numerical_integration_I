@@ -222,14 +222,17 @@ $$
 Romberg Integration iteratively applies the **Trapezoidal Rule** and Richardson Extrapolation to construct a table of increasingly accurate integral approximations.
 
 1. **Compute the initial trapezoidal estimates:**
+
    $$
    R_{m,0} = T_m
    $$
+
    where \( $T_m$ \) is the Trapezoidal Rule approximation using \( $2^m$ \) intervals:
    
    $$
    T_m = \frac{h_m}{2} \left[ f(a) + f(b) + 2 \sum_{k=1}^{2^m-1} f(a + k h_m) \right]
    $$
+
    with step size:
    
    $$
