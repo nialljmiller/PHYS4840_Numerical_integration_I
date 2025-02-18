@@ -184,19 +184,19 @@ A(h) = A + C h^p + \text{(higher-order terms)}
 $$
 
 where:
-- \( A \) is the **true value** of what we're trying to compute.
-- \( C h^p \) is the **leading error term** (the main source of inaccuracy).
-- \( p \) is the **order of the error** (e.g., for the trapezoidal rule, \( p = 2 \), meaning the error is proportional to \( h^2 \)).
+- \( $A$ \) is the **true value** of what we're trying to compute.
+- \( $C h^p$ \) is the **leading error term** (the main source of inaccuracy).
+- \( $p$ \) is the **order of the error** (e.g., for the trapezoidal rule, \( $p = 2$ \), meaning the error is proportional to \( $h^2$ \)).
 
-If we compute the approximation again with **a smaller step size** \( h/2 \), we get:
+If we compute the approximation again with **a smaller step size** \( $h/2$ \), we get:
 
 $$
 A(h/2) = A + C (h/2)^p + \text{(higher-order terms)}
 $$
 
-which is the same true value \( A \), but with a smaller error term.
+which is the same true value \( $A$ \), but with a smaller error term.
 
-Since we now have **two equations** for \( A(h) \) and \( A(h/2) \), we can **combine them algebraically** to eliminate the leading error term.
+Since we now have **two equations** for \( $A(h)$ \) and \( $A(h/2)$ \), we can **combine them algebraically** to eliminate the leading error term.
 
 ---
 
@@ -233,8 +233,8 @@ This is **Richardson Extrapolation**.
 
 ---
 
-## **Example with Trapezoidal Rule (where \( p = 2 \))**
-For the trapezoidal rule, the error is \( O(h^2) \), so we set \( p = 2 \):
+## **Example with Trapezoidal Rule (where \( $p = 2$ \))**
+For the trapezoidal rule, the error is \( $O(h^2)$ \), so we set \( $p = 2$ \):
 
 $$
 A = A(h/2) + \frac{A(h/2) - A(h)}{4 - 1}
