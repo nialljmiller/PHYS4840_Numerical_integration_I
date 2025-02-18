@@ -121,7 +121,7 @@ $$
 C = f(0)
 $$
 
-Since integration of a quadratic function is straightforward, we integrate \( f(x) \) over the interval \( [-h, h] \):
+Since integration of a quadratic function is straightforward, we integrate \( $f(x)$ \) over the interval \( $[-h, h]$ \):
 
 $$
 \int_{-h}^{h}(Ax^2 + Bx + C)dx = \frac{2}{3}Ah^3 + 2Ch
@@ -252,8 +252,6 @@ The Romberg method fills in a triangular table as follows:
 
 ---
 
-## **Final Approximation**  
-
 The **best estimate** for the integral is found at the **bottom-right** of the table:
 
 $$
@@ -282,27 +280,6 @@ def romberg_integration(f, a, b, m):
 
     return R[m, m]
 ```
-
-This function:  
-- Computes the **Trapezoidal Rule** estimates for increasing numbers of intervals.
-- Applies **Richardson Extrapolation** iteratively to refine the estimates.
-- Returns the **most accurate** estimate at \( R_{m,m} \).
-
----
-
-## **Comparison with Trapezoidal and Simpson’s Rule**  
-
-- The **Trapezoidal Rule** is simple but has **\( $\mathcal{O}(h^2)$ \) error**.
-- **Simpson’s Rule** improves upon it with **\( $\mathcal{O}(h^4)$ \) accuracy**, requiring an even number of subintervals.
-- **Romberg Integration** systematically eliminates error terms, achieving **very high accuracy** with relatively few function evaluations.
-
-
-
-
-
-
-
-
 
 
 
@@ -341,63 +318,5 @@ which demonstrates the **\( O(h^4) \) scaling**—halving \( h \) now reduces th
 These results justify why **Simpson’s Rule is significantly more accurate than the Trapezoidal Rule** when the function is sufficiently smooth.  
 
 ---
-
-### **Example: Comparing Errors Numerically**  
-
-To illustrate the differences in error behavior, we approximate the integral:  
-
-$$
-I = \int_0^1 e^{-x^2} dx
-$$  
-
-which does not have a simple closed-form solution, but can be accurately estimated using high-precision numerical techniques.  
-
-```python
-import numpy as np
-import matplotlib.pyplot as plt
-from scipy.integrate import quad
-
-def f(x):
-    return np.exp(-x**2)
-
-# Compute "exact" integral using high-precision quadrature
-exact, _ = quad(f, 0, 1)
-
-# Define subintervals
-ns = np.arange(2, 50, 2)
-
-# Compute errors for Trapezoidal and Simpson’s Rule
-errors_trapz = [abs(trapezoidal_rule(f, 0, 1, n) - exact) for n in ns]
-errors_simpson = [abs(simpsons_rule(f, 0, 1, n) - exact) for n in ns]
-
-# Plot error behavior on a log-log scale
-plt.figure(figsize=(8, 5))
-plt.loglog(ns, errors_trapz, label='Trapezoidal Error', marker='o')
-plt.loglog(ns, errors_simpson, label='Simpson’s Error', marker='s')
-plt.legend()
-plt.xlabel('Number of Subintervals (n)')
-plt.ylabel('Absolute Error')
-plt.title('Error Comparison of Trapezoidal and Simpson’s Rule')
-plt.grid(True)
-plt.show()
-```
-
----
-
-### **Key Observations**  
-
-1. **Trapezoidal Rule** exhibits an **\( O(h^2) \)** error decay, meaning a linear trend in a log-log plot with slope **-2**.  
-2. **Simpson’s Rule** follows an **\( O(h^4) \)** error decay, meaning its error decreases much faster with increasing \( n \).  
-3. **Romberg Integration** (not shown here) further refines the trapezoidal estimates, achieving even better accuracy.  
-
-
-
----
-
-
-
-### **Next Class: Thursday, February 20**  
-**Topic:** Numerical Integration II - Gauss-Legendre Quadrature  
-**Sections:** 5.4, 5.5, 5.6, 5.7 (5.8, 5.9 TBD)
 
 
