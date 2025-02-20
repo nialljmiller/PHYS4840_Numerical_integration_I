@@ -314,3 +314,128 @@ These results justify why **Simpson’s Rule is significantly more accurate than
 ---
 
 
+
+## **Gauss-Legendre Quadrature: Higher-Order Accuracy with Fewer Points**  
+
+Gauss-Legendre quadrature is a powerful numerical integration technique that achieves high accuracy using a small number of points. Unlike the Trapezoidal Rule and Simpson’s Rule, which approximate the integral by evaluating the function at **equally spaced points**, Gauss quadrature optimally selects points (**nodes**) and weights to maximize accuracy for a given number of function evaluations.  
+
+Instead of using equally spaced intervals, Gauss-Legendre quadrature approximates an integral:  
+
+$$
+I = \int_{-1}^{1} f(x) dx
+$$
+
+as a weighted sum of function values at specific points:
+
+$$
+I \approx \sum_{i=1}^{n} w_i f(x_i)
+$$
+
+where:
+- \( x_i \) are the **Legendre nodes** (roots of the Legendre polynomial $P_n(x)$ - $x$ when $P_n(x) = 0$).
+- \( w_i \) are the **quadrature weights**, chosen to maximize accuracy.  
+
+For **\( n \) points**, Gauss-Legendre quadrature is exact for all polynomials up to degree **\( 2n-1 \)**.
+
+---
+
+Unlike the Trapezoidal and Simpson’s Rules, which rely on equally spaced points, Gauss quadrature optimally chooses points such that it can integrate higher-degree polynomials exactly.  
+
+This means **Gauss quadrature achieves higher accuracy with fewer function evaluations**, making it very efficient for **smooth** functions.
+
+---
+
+## **Gauss-Legendre Nodes and Weights**
+The quadrature points **\( x_i \)** are the roots of the **Legendre polynomial \( P_n(x) \)**:
+
+$$
+P_n(x) = \frac{1}{2^n n!} \frac{d^n}{dx^n} (x^2 - 1)^n
+$$
+
+The weights \( w_i \) are computed using:
+
+$$
+w_i = \frac{2}{(1 - x_i^2) [P_n'(x_i)]^2}
+$$
+
+For small values of \( n \), the nodes and weights are precomputed:
+
+| \( n \) | Nodes \( x_i \) | Weights \( w_i \) |
+|---|---|---|
+| 2 | \( \pm 0.57735 \) | \( 1.0 \) |
+| 3 | \( \pm 0.774597, 0 \) | \( 0.555556, 0.888889 \) |
+| 4 | \( \pm 0.861136, \pm 0.339981 \) | \( 0.347855, 0.652145 \) |
+
+---
+
+## **Gauss-Legendre Quadrature for General Intervals**  
+Since the standard Gauss-Legendre quadrature is defined for \( [-1,1] \), we need to **map** an integral over \( [a, b] \) into this interval.  
+
+If we want to approximate:
+
+$$
+I = \int_a^b f(x) dx
+$$
+
+we perform a **change of variables**:
+
+$$
+x = \frac{b-a}{2} t + \frac{a+b}{2}
+$$
+
+which transforms the integral into:
+
+$$
+I = \frac{b-a}{2} \int_{-1}^{1} f\left(\frac{b-a}{2} t + \frac{a+b}{2} \right) dt
+$$
+
+Applying Gauss quadrature:
+
+$$
+I \approx \frac{b-a}{2} \sum_{i=1}^{n} w_i f\left(\frac{b-a}{2} x_i + \frac{a+b}{2}\right)
+$$
+
+---
+
+## **Gauss-Legendre Quadrature Code Implementation**
+
+### **Using SciPy's Built-in Function**
+
+```python
+import numpy as np
+
+def gauss_legendre_quadrature(f, a, b, n):
+    # Get the Legendre-Gauss nodes and weights
+    x, w = np.polynomial.legendre.leggauss(n)
+    
+    # Transform x from [-1,1] to [a,b]
+    transformed_x = 0.5 * (b - a) * x + 0.5 * (a + b)
+    
+    # Compute integral approximation
+    integral = 0.5 * (b - a) * np.sum(w * f(transformed_x))
+    
+    return integral
+```
+
+---
+
+## **Comparison with Other Methods**
+
+| Method | Error Order \( O(h^p) \) | Number of Function Evaluations (for n=4) | Accuracy |
+|---|---|---|---|
+| **Trapezoidal Rule** | \( O(h^2) \) | 5 | Low |
+| **Simpson’s Rule** | \( O(h^4) \) | 5 | Moderate |
+| **Romberg Integration** | \( O(h^{2m}) \) | Varies | High |
+| **Gauss-Legendre Quadrature (n=4)** | Exact for \( O(x^7) \) | 4 | Very High |
+
+### **Advantages of Gauss-Legendre Quadrature**
+- **Higher accuracy** for smooth functions.
+- **Requires fewer function evaluations** than Simpson's Rule or Trapezoidal Rule.
+- **Exact for polynomials up to \( 2n-1 \)**.
+
+### **Limitations**
+- More computationally expensive to determine nodes and weights.
+- Less effective for functions with singularities or discontinuities.
+- Not as intuitive as the Trapezoidal Rule for basic understanding.
+
+---
