@@ -358,14 +358,6 @@ $$
 w_i = \frac{2}{(1 - x_i^2) [P_n'(x_i)]^2}
 $$
 
-For small values of \( n \), the nodes and weights are precomputed:
-
-| \( n \) | Nodes \( x_i \) | Weights \( w_i \) |
-|---|---|---|
-| 2 | \( \pm 0.57735 \) | \( 1.0 \) |
-| 3 | \( \pm 0.774597, 0 \) | \( 0.555556, 0.888889 \) |
-| 4 | \( \pm 0.861136, \pm 0.339981 \) | \( 0.347855, 0.652145 \) |
-
 ---
 
 ## **Gauss-Legendre Quadrature for General Intervals**  
