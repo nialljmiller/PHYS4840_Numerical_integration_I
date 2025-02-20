@@ -283,8 +283,8 @@ def romberg_integration(f, a, b, m):
 Each numerical integration method introduces some level of **error**, which depends on the function’s smoothness and the choice of subinterval width \( h \).  
 
 The leading-order error for:  
-- The **Trapezoidal Rule** is \( O(h^2) \)  
-- **Simpson’s Rule** is \( O(h^4) \)  
+- The **Trapezoidal Rule** is $O(h^2)$
+- **Simpson’s Rule** is $O(h^4)$
 - More sophisticated methods (e.g., **Romberg**) systematically eliminate these errors for even greater accuracy.  
 
 ---
@@ -402,19 +402,20 @@ $$
 ### **Using SciPy's Built-in Function**
 
 ```python
+
+#!/usr/bin/env python3
 import numpy as np
 
-def gauss_legendre_quadrature(f, a, b, n):
-    # Get the Legendre-Gauss nodes and weights
-    x, w = np.polynomial.legendre.leggauss(n)
-    
-    # Transform x from [-1,1] to [a,b]
-    transformed_x = 0.5 * (b - a) * x + 0.5 * (a + b)
-    
-    # Compute integral approximation
-    integral = 0.5 * (b - a) * np.sum(w * f(transformed_x))
-    
-    return integral
+legendre_roots, weights = np.polynomial.legendre.leggauss(n)
+
+for i in range(n):
+    point = legendre_roots[i]
+    weight = weights[i]
+    function_value = f(point)  # Evaluate function at the Gauss point
+    weighted_value = weight * function_value  # Apply weight
+    integral_approx += weighted_value  # Add to running sum
+
+
 ```
 
 ---
