@@ -340,9 +340,6 @@ where:
 
 For **$n$ points**, Gauss-Legendre quadrature is exact for all polynomials up to degree **$2n-1$**.
 
----
-
-### **Why Gauss-Legendre Quadrature?**
 Unlike the Trapezoidal and Simpson’s Rules, which rely on equally spaced points, Gauss quadrature **optimally** chooses points such that it can integrate higher-degree polynomials exactly.  
 
 This means **Gauss quadrature achieves higher accuracy with fewer function evaluations**, making it very efficient for **smooth** functions.
@@ -362,7 +359,6 @@ $$
 w_i = \frac{2}{(1 - x_i^2) [P_n'(x_i)]^2}
 $$
 
-These values are precomputed and available in **SciPy**, so we can efficiently retrieve them using:
 
 ```python
 legendre_roots, weights = np.polynomial.legendre.leggauss(n)
@@ -370,7 +366,7 @@ legendre_roots, weights = np.polynomial.legendre.leggauss(n)
 
 ---
 
-## **Gauss-Legendre Quadrature for General Intervals**  
+## **Gauss-Legendre Quadrature for General Intervals - Transform**  
 Since the standard Gauss-Legendre quadrature is defined for $[-1,1]$, we need to **map** an integral over $[a, b]$ into this interval.  
 
 If we want to approximate:
@@ -397,7 +393,7 @@ $$
 I \approx \frac{b-a}{2} \sum_{i=1}^{n} w_i f\left(\frac{b-a}{2} x_i + \frac{a+b}{2}\right)
 $$
 
-However, in your **specific case**, you are integrating over **$[-1,1]$**, so the transformation is not needed, and the Gauss-Legendre Quadrature simplifies to:
+However, in this **specific case**, we are integrating over **$[-1,1]$**, so the transformation is not needed, and the Gauss-Legendre Quadrature simplifies to:
 
 $$
 I \approx \sum_{i=1}^{n} w_i f(x_i)
@@ -407,7 +403,7 @@ $$
 
 ## **Gauss-Legendre Quadrature Code Implementation**
 
-The following Python script implements **300-point Gauss-Legendre Quadrature** to approximate:
+The following Python script implements **Gauss-Legendre Quadrature** to approximate:
 
 $$
 \int_{-1}^{1} x^2 \, dx = \frac{2}{3}
@@ -423,9 +419,7 @@ def f(x):
     return x**2  # Function: f(x) = x^2
 
 # Number of points (n) for Gauss-Legendre Quadrature
-n = 300  # Can be changed for different accuracies
-
-# Compute the Gauss-Legendre Quadrature points (roots of the Legendre polynomial) and weights
+n = 3  
 legendre_roots, weights = np.polynomial.legendre.leggauss(n)
 
 # Print computed points and weights
@@ -435,10 +429,8 @@ print(legendre_roots)
 print("\nWeights for each point:")
 print(weights)
 
-# Compute the integral approximation manually using a for loop
 integral_approx = 0  # Initialize sum
 
-print("\nStep-by-step evaluation of the integral approximation:")
 for i in range(n):
     point = legendre_roots[i]
     weight = weights[i]
@@ -449,10 +441,8 @@ for i in range(n):
     # Print step-by-step details
     print(f"Point {i+1}: x = {point:.5f}, f(x) = {function_value:.5f}, weight = {weight:.5f}, contribution = {weighted_value:.5f}")
 
-# Exact result of the integral
 exact_integral = 2 / 3
 
-# Print final comparison
 print("\nFinal Results:")
 print(f"Approximated integral using Gauss-Legendre Quadrature: {integral_approx:.5f}")
 print(f"Exact integral: {exact_integral:.5f}")
