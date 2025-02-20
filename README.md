@@ -393,7 +393,7 @@ $$
 I \approx \frac{b-a}{2} \sum_{i=1}^{n} w_i f\left(\frac{b-a}{2} x_i + \frac{a+b}{2}\right)
 $$
 
-However, in this **specific case**, we are integrating over **$[-1,1]$**, so the transformation is not needed, and the Gauss-Legendre Quadrature simplifies to:
+However, in the **specific case**, that we are integrating over **$[-1,1]$**, the transformation is not needed. The Gauss-Legendre Quadrature simplifies to:
 
 $$
 I \approx \sum_{i=1}^{n} w_i f(x_i)
