@@ -403,11 +403,6 @@ $$
 
 ## **Gauss-Legendre Quadrature Code Implementation**
 
-The following Python script implements **Gauss-Legendre Quadrature** to approximate:
-
-$$
-\int_{-1}^{1} x^2 \, dx = \frac{2}{3}
-$$
 
 ### **Python Code**
 ```python
