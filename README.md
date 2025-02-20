@@ -414,39 +414,13 @@ $$
 #!/usr/bin/env python3
 import numpy as np
 
-# Define the function we want to integrate
-def f(x):
-    return x**2  # Function: f(x) = x^2
-
-# Number of points (n) for Gauss-Legendre Quadrature
-n = 3  
 legendre_roots, weights = np.polynomial.legendre.leggauss(n)
-
-# Print computed points and weights
-print("Gauss-Legendre Quadrature Points (Roots of P_n(x)):")
-print(legendre_roots)
-
-print("\nWeights for each point:")
-print(weights)
-
-integral_approx = 0  # Initialize sum
-
 for i in range(n):
     point = legendre_roots[i]
     weight = weights[i]
     function_value = f(point)  # Evaluate function at the Gauss point
     weighted_value = weight * function_value  # Apply weight
     integral_approx += weighted_value  # Add to running sum
-
-    # Print step-by-step details
-    print(f"Point {i+1}: x = {point:.5f}, f(x) = {function_value:.5f}, weight = {weight:.5f}, contribution = {weighted_value:.5f}")
-
-exact_integral = 2 / 3
-
-print("\nFinal Results:")
-print(f"Approximated integral using Gauss-Legendre Quadrature: {integral_approx:.5f}")
-print(f"Exact integral: {exact_integral:.5f}")
-print(f"Error: {abs(integral_approx - exact_integral):.5e}")
 ```
 
 ---
@@ -459,7 +433,6 @@ print(f"Error: {abs(integral_approx - exact_integral):.5e}")
 | **Simpson’s Rule** | $O(h^4)$ | 5 | Moderate |
 | **Romberg Integration** | $O(h^{2m})$ | Varies | High |
 | **Gauss-Legendre Quadrature (n=4)** | Exact for $O(x^7)$ | 4 | Very High |
-| **Gauss-Legendre Quadrature (n=300)** | Exact for $O(x^{599})$ | 300 | Extremely High |
 
 ---
 
@@ -473,15 +446,5 @@ print(f"Error: {abs(integral_approx - exact_integral):.5e}")
 - More computationally expensive to determine nodes and weights.
 - Less effective for functions with singularities or discontinuities.
 - Not as intuitive as the Trapezoidal Rule for basic understanding.
-
----
-
-## **Summary of Numerical Integration Methods**
-| Method | Description | Error Order |
-|---|---|---|
-| **Trapezoidal Rule** | Approximates with linear segments | $O(h^2)$ |
-| **Simpson’s Rule** | Uses quadratic interpolation | $O(h^4)$ |
-| **Romberg Integration** | Richardson extrapolation of Trapezoidal Rule | $O(h^{2m})$ |
-| **Gauss-Legendre Quadrature** | Uses optimally chosen nodes and weights | Exact for $O(x^{2n-1})$ |
 
 ---
