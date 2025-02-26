@@ -443,3 +443,27 @@ for i in range(n):
 - Not as intuitive as the Trapezoidal Rule for basic understanding.
 
 ---
+
+
+
+# Homework question 1)
+
+## Task
+Download `GAIA.csv` and `Vega_SED.csv`. Calculate the area for both curves using three integration methods:
+
+- **Trapezoidal Rule**
+- **Simpson’s Rule**
+- **Romberg Integration**
+
+Each method must return a valid numerical result. If any method fails, explain why and suggest a fix.
+
+## Clarifications
+- **Vega_SED.csv**: Only use the first two columns for integration.
+
+## Steps
+1. Load the data from `GAIA.csv` and `Vega_SED.csv`.
+2. Perform numerical integration using Trapezoidal, Simpson’s, and Romberg methods.
+3. Ensure all methods return valid results.
+4. If a method fails, explain why and suggest a solution.
+5. Comment on the steps needed to compute the area for `Vega_SED.csv`.
+
