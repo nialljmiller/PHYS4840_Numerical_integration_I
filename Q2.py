@@ -5,9 +5,6 @@ import matplotlib.pyplot as plt
 # ----- Integration Functions that take x and y data only -----
 
 def trapezoidal_rule_data(x, y):
-    """
-    Approximates the integral using the trapezoidal rule from raw data.
-    """
     integral = 0.0
     for i in range(len(x) - 1):
         dx = x[i+1] - x[i]
@@ -16,11 +13,7 @@ def trapezoidal_rule_data(x, y):
 
 
 def simpsons_rule_data(x, y):
-    """
-    Approximates the integral using Simpson's rule from raw data.
-    Assumes that the x data is evenly spaced.
-    If there's an odd number of intervals, the last interval is dropped.
-    """
+
     N = len(x) - 1
 
     h = (x[-1] - x[0]) / N
@@ -33,11 +26,7 @@ def simpsons_rule_data(x, y):
     return integral * h / 3
 
 def romberg_rule_data(x, y, max_order):
-    """
-    Approximates the integral using Romberg's method from raw data.
-    Uses linear interpolation (np.interp) internally to evaluate the function
-    at arbitrary points.
-    """
+
     a = x[0]
     b = x[-1]
     R = np.zeros((max_order, max_order))
