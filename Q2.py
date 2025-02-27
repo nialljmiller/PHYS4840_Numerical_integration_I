@@ -172,6 +172,7 @@ print("\nVega Data Integration:")
 print("Trapezoidal Rule:   ", trapz_vega)
 print("Simpson's Rule:     ", simpson_vega) # why is this one different?
 print("Romberg Integration:", romberg_vega)
+print("=============================\n")
 
 
 
