@@ -133,12 +133,12 @@ def show_data(x_gaia, y_gaia,x_vega, y_vega):
 
 
 
-# ----- Load Data -----
-
-# Read in CSV files (make sure these files are in your working directory)
+# Load the CSV files into a pandas data frame
 gaia = pd.read_csv("GAIA_G.csv", header=None, names=["Wavelength", "Flux"])
 vega = pd.read_csv("vega_SED.csv")
 
+# Split the data into lists
+#This can be done in many different ways but for the sake of clarity (and NOT speed) I will do this
 x_gaia = np.array(gaia["Wavelength"])
 y_gaia = np.array(gaia["Flux"])
 
