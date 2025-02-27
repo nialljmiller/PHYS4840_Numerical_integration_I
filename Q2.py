@@ -204,6 +204,7 @@ romberg_vega = romberg(x_vega, y_vega, max_order)
 
 
 #print results
+print("\n After setting a lower limit on the Vega SED...")
 print("GAIA Data Integration:")
 print("Trapezoidal Rule:   ", trapz_gaia)
 print("Simpson's Rule:     ", simpson_gaia)
