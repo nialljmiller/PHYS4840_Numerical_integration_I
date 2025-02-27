@@ -2,8 +2,6 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# ----- Integration Functions that take x and y data only -----
-
 def trapezoidal(x, y):
     integral = 0.0
     for i in range(len(x) - 1):
